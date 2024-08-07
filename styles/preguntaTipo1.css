@@ -1,0 +1,169 @@
+.barra-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.nivel-info {
+    display: flex;
+    align-items: center;
+}
+
+.nivel-label {
+    background-color: #6EDAD1;
+    color: black;
+    font-weight: bold;
+    margin-right: 10px;
+    padding: 10px 50px;
+    border-radius: 50px;
+}
+
+.progress-bar {
+    width: 600px;
+    height: 30px;
+    background-color: #E0E0E0;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.progress {
+    width: 30%;
+    height: 100%;
+    background-color: #6EDAD1;
+}
+
+.game-controls {
+    display: flex;
+    align-items: center;
+}
+
+.control-icon {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.timer {
+    background-color: #6EDAD1;
+    color: black;
+    font-weight: bold;
+    padding: 10px 30px;
+    border-radius: 50px;
+}
+
+.lives {
+    position: absolute;
+    top: 100px;
+    right: 23%;
+    background-color: white;
+    padding: 5px 30px;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.life-icon {
+    width: 24px;
+    height: 24px;
+    margin: 0px 10px;
+}
+
+.game-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    height: 420px;
+    max-height: 420px;
+}
+
+.instruction-box {
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.instruction-box p{
+    margin: 12px 0px;
+}
+
+.chemical-formula {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.chemical-name{
+    text-align: center;
+}
+
+.formula-img{
+    width: auto;
+    height: 200px;
+}
+
+.formula-input {
+    text-align: center;
+    font-size: 24px;
+    position: absolute;
+}
+
+.formula-input.op1{
+    width: 40px;
+    height: 40px;
+    top: 270px;
+    left: 48.7%;
+}
+
+.formula-input.op2{
+    width: 70px;
+    height: 40px;
+    top: 405px;
+    left: 53%;
+}
+
+.chemical-name {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.game-character {
+    height: 240px;
+    width: auto;
+    position: absolute;
+    right: 22%;
+    top: 210px;
+}
+
+.help-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #41C0B9;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.next-btn {
+    padding: 15px 35px;
+    background-color: #41C0B9;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.bottom-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+}
+
