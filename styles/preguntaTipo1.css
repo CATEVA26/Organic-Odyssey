@@ -28,7 +28,7 @@
 }
 
 .progress {
-    width: 30%;
+    width: 33%;
     height: 100%;
     background-color: #6EDAD1;
 }
@@ -91,47 +91,6 @@
     margin: 12px 0px;
 }
 
-.chemical-formula {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.chemical-name{
-    text-align: center;
-}
-
-.formula-img{
-    width: auto;
-    height: 200px;
-}
-
-.formula-input {
-    text-align: center;
-    font-size: 24px;
-    position: absolute;
-}
-
-.formula-input.op1{
-    width: 40px;
-    height: 40px;
-    top: 270px;
-    left: 48.7%;
-    transform: translateX(0%);
-}
-
-.formula-input.op2{
-    width: 70px;
-    height: 40px;
-    top: 405px;
-    left: 53%;
-    transform: translateX(0%);
-}
-
-.chemical-name {
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
 .game-character-tipo1 {
     height: 240px;
     width: auto;
@@ -171,3 +130,44 @@
     margin-top: 50px;
 }
 
+
+/* Estilos de las preguntas Tipo1*/
+.chemical-formula {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.chemical-name{
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.formula-img{
+    width: auto;
+    height: 200px;
+}
+
+.formula-input {
+    text-align: center;
+    font-size: 24px;
+    position: absolute;
+}
+
+/* Estilos que cambian en las preguntas Tipo1*/
+.formula-input.op1{
+    width: 80px;
+    height: 50px;
+    top: 270px;
+    left: 53%;
+    transform: translateX(0%);
+}
+
+.formula-input.op2{
+    width: 30px;
+    height: 30px;
+    top: 403px;
+    left: 51.5%;
+    transform: translateX(0%);
+}

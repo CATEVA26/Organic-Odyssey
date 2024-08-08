@@ -42,12 +42,14 @@
     font-size: large;
     background: #41C0B9;
     border-radius: 25px;
+    cursor: pointer;
 }
 .btn-conceptos{
     border: none;
     background: #6edad1;
     padding: 20px;
     font-size: large;
+    cursor: pointer;
 }
 
 /* PANTALLA DE AYUDA*/

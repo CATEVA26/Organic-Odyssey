@@ -1,14 +1,5 @@
 /* Styles for the "NIVEL 2" screen */
 
-.chemical-formula {
-    margin-bottom: 20px;
-}
-
-.formula-image {
-    width: 200px;
-    height: auto;
-    max-height: 250px;
-}
 
 .options-container {
     display: flex;
@@ -38,6 +29,17 @@
     transform: translateX(0%);
 }
 
+
+/* Estilos de las preguntas Tipo2*/
+.selection-game {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    min-height: 400px;
+    max-height: 400px;
+    align-items: center;
+}
+
 .chemical-formula-tipo2 {
     display: flex;
     flex-direction: column;
@@ -47,11 +49,8 @@
     align-items: center;
 }
 
-.selection-game {
-    display: flex;
-    justify-content: space-between;
-    width: 500px;
-    min-height: 400px;
-    max-height: 400px;
-    align-items: center;
+.formula-image {
+    width: 200px;
+    height: auto;
+    max-height: 250px;
 }

@@ -54,14 +54,20 @@
                         <button class="option-btn">Pentanol</button>
                     </div>
                 </div>
-                <img src="/img/quimica-char-pencil.png" alt="Game-character" class="game-character-tipo2">
             </main>
+            <img src="/img/quimica-char-pencil.png" alt="Game-character" class="game-character-tipo2">
             <div class="bottom-buttons">
-                <img src="/img/help-1.svg" alt="icono de ayuda" width="78px" height="79px" style="padding-left: 20px;">
-                <button class="next-btn" alt="Botón siguiente">Siguiente</button>
+                <img src="/img/help-1.svg" alt="icono de ayuda" onclick="redirigir('ayudaJuego')" width="78px" height="79px" style="padding-left: 20px; cursor: pointer;">
+                <button class="next-btn" alt="Botón siguiente" onclick="redirigir('puntuaciones')">Siguiente</button>
             </div>
         </div>
     </div>
     <script src="/js/scripts.js"></script>
+    <script>
+        window.onload = function() {
+            cargarTemplates()
+            cargarPreguntaAleatoriaTipo2();
+        }
+    </script>
 </body>
 </html>

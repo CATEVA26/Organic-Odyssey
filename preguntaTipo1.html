@@ -43,20 +43,24 @@
                     <p>Completa los espacios en blanco con el símbolo</p>
                 </div>
                 <div class="chemical-formula">
-                    <img src="/img/compuesto-acetona.png" alt="formula química de la acetona" class="formula-img">
+                    <img src="/img/compuesto-pentanol.png" alt="formula química de la acetona" class="formula-img">
                     <input type="text" class="formula-input op1">
-                    <input type="text" class="formula-input op2">
-                    <p class="chemical-name">PROPANONA (ACETONA)</p>
+                    <p class="chemical-name">PENTANOL</p>
                 </div>
-                <img src="/img/quimica-char-rope.png" alt="Imagen de la mascota del juego" class="game-character-tipo1">
-                
             </main>
+            <img src="/img/quimica-char-rope.png" alt="Imagen de la mascota del juego" class="game-character-tipo1">
             <div class="bottom-buttons">
-                <img src="/img/help-1.svg" alt="icono de ayuda" width="78px" height="79px" style="padding-left: 20px;">
-                <button class="next-btn" alt="Botón siguiente">Siguiente</button>
+                <img src="/img/help-1.svg" alt="icono de ayuda" onclick="redirigir('ayudaJuego')" width="78px" height="79px" style="padding-left: 20px; cursor: pointer;">
+                <button class="next-btn" alt="Botón siguiente" onclick="redirigir('preguntaTipo2')">Siguiente</button>
             </div>
         </div>
     </div>
     <script src="/js/scripts.js"></script>
+    <script>
+        window.onload = function() {
+            cargarTemplates()
+            cargarPreguntaAleatoriaTipo1();
+        }
+    </script>
 </body>
 </html>

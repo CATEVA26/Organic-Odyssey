@@ -20,13 +20,13 @@
     <div class="contenedor-juego">
         <div class="pantalla-juego">
             <header class="barra-superior">
-                <button class="btn-back"><img src="/img/back.png" alt="Volver"></button>
+                <button class="btn-back" onclick="history.back()"><img src="/img/back.png" alt="Volver"></button>
                 <h1>NIVELES</h1>
-                <button class="btn-home"><img src="/img/home.png" alt="Inicio"></button>
+                <button class="btn-home" onclick="redirigir('index')"><img src="/img/home.png" alt="Inicio"></button>
             </header>
             <section class="contenido-niveles">
                 <div class="grid-niveles">
-                    <button class="btn-nivel" alt="Nivel 1 desbloqueado" tabindex="0">
+                    <button class="btn-nivel" alt="Nivel 1 desbloqueado" tabindex="0" onclick="redirigir('preguntaTipo1')">
                         <img src="/img/unlocked.jpg">
                         <span>NIVEL 1</span>
                     </button>
@@ -44,8 +44,9 @@
                     </button>
                 </div>
             </section>
-            <img src="/img/help-1.svg" alt="icono de ayuda" width="78px" height="79px" style="padding-left: 20px;">
+            <img src="/img/help-1.svg" alt="icono de ayuda" onclick="redirigir('ayudaJuego')" width="78px" height="79px" style="padding-left: 20px; cursor: pointer;">
         </div>
     </div>
+    <script src="/js/scripts.js"></script>
 </body>
 </html>
