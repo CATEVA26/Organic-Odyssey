@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organic Odyssey</title>
+    <title>Nivel 2 - Organic Odyssey</title>
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/preguntaTipo1.css">
-    <link rel="stylesheet" href="styles/game-screen.css">
+    <link rel="stylesheet" href="styles/respuestaCorrecta.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
         <div class="pantalla-juego">
             <header class="barra-superior">
                 <div class="nivel-info">
-                    <span class="nivel-label">NIVEL 1</span>
+                    <span class="nivel-label">NIVEL 2</span>
                     <div class="progress-bar">
                         <div class="progress"></div>
                     </div>
@@ -36,20 +36,17 @@
             <div class="lives">
                 <img src="/img/heart-full.png" alt="Life" class="life-icon">
                 <img src="/img/heart-full.png" alt="Life" class="life-icon">
-                <img src="/img/heart-empty.png" alt="Life lost" class="life-icon">
+                <img src="/img/heart-full.png" alt="Life" class="life-icon">
             </div>
             <main class="game-content">
                 <div class="instruction-box">
-                    <p>Completa los espacios en blanco con el símbolo</p>
+                    <img src="/img/question-acetona.png" alt="Imagen de la pregunta fallida" class="question-img">
                 </div>
-                <div class="chemical-formula">
-                    <img src="/img/compuesto-acetona.png" alt="formula química de la acetona" class="formula-img">
-                    <input type="text" class="formula-input op1">
-                    <input type="text" class="formula-input op2">
-                    <p class="chemical-name">PROPANONA (ACETONA)</p>
+                <div class="answer">
+                    <img src="/img/compuesto-acetona.png" alt="Chemical structure of acetone" class="formula-image">
+                    <p>La acetona se forma con 2 radicales de metilo y un oxígeno con doble enlace</p>
                 </div>
-                <img src="/img/quimica-char-rope.png" alt="Imagen de la mascota del juego" class="game-character-tipo1">
-                
+                <img src="/img/quimica-char-died.png" alt="Game character" class="game-character-died">
             </main>
             <div class="bottom-buttons">
                 <img src="/img/help-1.svg" alt="icono de ayuda" width="78px" height="79px" style="padding-left: 20px;">
@@ -57,6 +54,5 @@
             </div>
         </div>
     </div>
-    <script src="/js/scripts.js"></script>
 </body>
 </html>

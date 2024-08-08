@@ -1,0 +1,54 @@
+/* Styles for the "NIVEL 2" screen */
+
+.chemical-formula {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.formula-image {
+    width: 200px;
+    height: auto;
+}
+
+.chemical-name {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.game-character {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    right: 50px;
+    bottom: 100px;
+}
+
+.answer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    max-width: 850px;
+    background-color: #9FEAE1;
+    padding: 20px;
+}
+
+.answer img{
+    margin-right: 20px;
+}
+
+.question-img{
+    height: 200px;
+    filter: sepia(1) saturate(0) brightness(1);
+}
+
+.game-character-died{
+    height: 270px;
+    width: auto;
+    position: absolute;
+    left: 25%; 
+    top: 150px;
+    transform: translateX(0%);
+}
