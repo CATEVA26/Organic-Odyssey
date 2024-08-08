@@ -48,7 +48,7 @@
     height: 270px;
     width: auto;
     position: absolute;
-    left: 25%; 
+    right: 65%; 
     top: 150px;
     transform: translateX(0%);
 }

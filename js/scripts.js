@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const pauseButton = document.querySelector('.control-icon[alt="Pause"]');
+    const pauseButton = document.querySelector('.control-icon[alt="Pausa"]');
     const pauseMenu = document.createElement('div');
     pauseMenu.classList.add('pause-menu');
     pauseMenu.innerHTML = `
