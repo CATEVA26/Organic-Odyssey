@@ -36,7 +36,6 @@ function redirigir(pagina) {
     window.location.href = pagina + '.html';
 }
 
-
 // Cargar templates con preguntas
 async function cargarTemplates() {
     try {
@@ -108,26 +107,45 @@ function cargarPregunta(idPregunta) {
 // Funcion para cargar las preguntas aleatoreamente
 // Tipo 1
 const preguntasTipo1 = [
-    'pregunta1-Tipo1',
-    'pregunta2-Tipo1',
-    'pregunta3-Tipo1',
+    {
+        preguntaID:'pregunta1-Tipo1',
+        respuestas: ['O','CH']
+    },
+    {
+        preguntaID:'pregunta2-Tipo1',
+        respuestas: ['O','H']
+    },
+    {
+        preguntaID:'pregunta3-Tipo1',
+        respuestas: ['OH']
+    },
 ];
 function cargarPreguntaAleatoriaTipo1() {
     const indiceAleatorio = Math.floor(Math.random() * preguntasTipo1.length);
-    const idPreguntaAleatoria = preguntasTipo1[indiceAleatorio];
+    const idPreguntaAleatoria = preguntasTipo1[indiceAleatorio].preguntaID;
     cargarPregunta(idPreguntaAleatoria);
 }
 
 
 // Tipo 2
 const preguntasTipo2 = [
-    'pregunta1-Tipo2',
-    'pregunta2-Tipo2',
-    'pregunta3-Tipo2',
+    { 
+        preguntaID:'pregunta1-Tipo2',
+        respuestas:['Etanol','Pentanol']
+    },    
+    {
+        preguntaID:'pregunta2-Tipo2',
+        respuestas:['Acetona','Pentanol']
+    },
+    {
+        preguntaID:'pregunta3-Tipo2',
+        respuestas:['Etanol','Acetona']
+    },
+    
 ];
 function cargarPreguntaAleatoriaTipo2() {
     const indiceAleatorio = Math.floor(Math.random() * preguntasTipo2.length);
-    const idPreguntaAleatoria = preguntasTipo2[indiceAleatorio];
+    const idPreguntaAleatoria = preguntasTipo2[indiceAleatorio].preguntaID;
     cargarPregunta(idPreguntaAleatoria);
 }
 
