@@ -1,4 +1,4 @@
-let templatesCache = {}; 
+let templatesCache = {};
 
 // Menu de pausa
 document.addEventListener("DOMContentLoaded", function() {
@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelector('.pantalla-juego').style.filter = '';
         document.querySelector('.pantalla-juego').style.pointerEvents = '';
     });
-
     cargarTemplates();
 });
 
@@ -39,20 +38,24 @@ function redirigir(pagina) {
 
 
 // Cargar templates con preguntas
-function cargarTemplates() {
-    fetch('templates.html')
-        .then(response => response.text())
-        .then(data => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(data, 'text/html');
+async function cargarTemplates() {
+    try {
+        const randomParam = '?nocache=' + new Date().getTime();
+        const response = await fetch('templates.html' + randomParam);
+        const data = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data, 'text/html');
 
-            // Cachear los templates
-            doc.querySelectorAll('template').forEach(template => {
-                templatesCache[template.id] = template;
-            });
-        })
-        .catch(error => console.error('Error al cargar los templates:', error));
+        doc.querySelectorAll('template').forEach(template => {
+            templatesCache[template.id] = template;
+        });
+
+        console.log('Templates cargados correctamente');
+    } catch (error) {
+        console.error('Error al cargar los templates:', error);
+    }
 }
+
 
 
 // Funcion para cambiar el contenido de una pregunta
@@ -90,7 +93,6 @@ function cargarPregunta(idPregunta) {
         
     // Asegúrate de que el template existe antes de intentar clonar su contenido
     const plantilla = templatesCache[idPregunta];
-    console.log(plantilla);
     if (plantilla) {
         const contenido = plantilla.content.cloneNode(true);
         contenedorJuego.innerHTML = '';
