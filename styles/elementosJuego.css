@@ -1,0 +1,15 @@
+.timer {
+    font-size: 1.5em;
+    color: #fff; /* Ajusta el color según tu diseño */
+}
+.lives {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.life-icon {
+    width: 30px; /* Ajusta el tamaño según tu diseño */
+    height: auto;
+    margin: 0 5px;
+}

@@ -1,6 +1,5 @@
 let templatesCache = {}; 
 
-// Menu de pausa
 document.addEventListener("DOMContentLoaded", function() {
     const pauseButton = document.querySelector('.control-icon[alt="Pausa"]');
     const pauseMenu = document.createElement('div');
@@ -16,21 +15,55 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.appendChild(pauseMenu);
 
     const resumeButton = document.querySelector('.resume-btn');
+    const timerElement = document.querySelector('.timer');
+
+    let timerDuration = 3 * 60; // 10 minutos en segundos
+    let timerInterval;
+
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(function() {
+            if (timerDuration <= 0) {
+                clearInterval(timerInterval);
+                // Puedes agregar lógica adicional cuando el tiempo se agote
+                return;
+            }
+            timerDuration--;
+            timerElement.textContent = formatTime(timerDuration);
+        }, 1000);
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+    }
 
     pauseButton.addEventListener('click', function() {
         pauseMenu.style.display = 'flex';
         document.querySelector('.pantalla-juego').style.filter = 'blur(5px)';
         document.querySelector('.pantalla-juego').style.pointerEvents = 'none';
+        stopTimer(); // Detener el temporizador al pausar
     });
 
     resumeButton.addEventListener('click', function() {
         pauseMenu.style.display = 'none';
         document.querySelector('.pantalla-juego').style.filter = '';
         document.querySelector('.pantalla-juego').style.pointerEvents = '';
+        startTimer(); // Reanudar el temporizador al reanudar
     });
 
-    cargarTemplates();
+    // Iniciar el temporizador cuando la página cargue
+    startTimer();
 });
+
+
+function redirigir(pagina) {
+    window.location.href = `/${pagina}.html`;
+}
 
 // Funcion para cambiar de pantalla
 function redirigir(pagina) {
@@ -128,5 +161,7 @@ function cargarPreguntaAleatoriaTipo2() {
     const idPreguntaAleatoria = preguntasTipo2[indiceAleatorio];
     cargarPregunta(idPreguntaAleatoria);
 }
+
+
 
 
