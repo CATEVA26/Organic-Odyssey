@@ -142,8 +142,8 @@
 
   .game-character-tipo1 {
     position: absolute; /* Necesario para el movimiento absoluto */
-    top: 50%; /* Ajusta la posición vertical según necesites */
-    left: -100px; /* Comienza fuera del área visible */
+    top: 25%; /* Ajusta la posición vertical según necesites */
+    left: 1250px; /* Comienza fuera del área visible */
     width: 200px; /* Ajusta el tamaño de la imagen según necesites */
     height: auto; /* Mantén la proporción original */
     animation: moveLeftRight 5s linear infinite; /* Aplicar la animación */
@@ -151,13 +151,13 @@
   
   @keyframes moveLeftRight {
     0% {
-      transform: translateX(-100px); /* Comienza fuera a la izquierda */
+      transform: translateY(-10px); /* Comienza fuera a la izquierda */
     }
     50% {
-      transform: translateX(calc(100vw - 200px)); /* Mueve a la derecha (ajusta el valor según el ancho de la imagen) */
+      transform: translateY(calc(10vw - 5px)); /* Mueve a la derecha (ajusta el valor según el ancho de la imagen) */
     }
     100% {
-      transform: translateX(-100px); /* Regresa al inicio */
+      transform: translateY(-10px); /* Regresa al inicio */
     }
   }
   
