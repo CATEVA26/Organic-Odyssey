@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/puntuaciones.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="styles/elementosJuego.css">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <style>
@@ -50,12 +52,23 @@
                     </tbody>
                 </table>
             </div>
-            <div class="game-character-score">
+            <div class="game-character-score" >
                 <img src="/img/quimica-char-flag.png" alt="Game character" class="character-image-score">
             </div>
-            <div class="new-game"><button class="btn-Accion" onclick="redirigir('index')">Nuevo Juego</button></div>
+            <div class="botones" style="margin-left: 35%;">
+                <button class="btn-Accion" onmouseover="playSound('hover-sound')" onclick="redirigir('index')">
+                    Nuevo Juego
+                  <span></span><span></span><span></span><span></span>
+                </button>
+            </div>
+
+        
+            <!-- Audio element -->
+            <audio id="hover-sound" src="sound/click.mp3"></audio>
         </div>
     </div>
-    <script src="/js/scripts.js"></script>
+    <script src="/js/scripts.js" defer></script>
+    <script src="/js/sound.js"></script>
+    <script src="/js/volume-controls.js"></script>
 </body>
 </html>

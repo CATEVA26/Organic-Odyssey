@@ -19,15 +19,30 @@
     font-size: 16px;
     cursor: pointer;
 }
-
 .game-character-tipo2 {
-    height: 270px;
-    width: auto;
+    height: 350px; /* Ajusta el tamaño según necesites */
+    width: auto; /* Mantén la proporción original */
     position: absolute;
-    right: 62%;
-    top: 100px;
-    transform: translateX(0%);
+    right: 59%; /* Ajusta la posición horizontal según necesites */
+    top: 70px; /* Ajusta la posición vertical */
+    animation: moveUpDown 1s ease-in-out infinite; /* Aplica la animación */
 }
+
+/* ANIMACION DE LAS IMAGENES */
+
+@keyframes moveUpDown {
+    0% {
+        transform: translateY(-3px); /* Comienza 3 píxeles arriba */
+    }
+    50% {
+        transform: translateY(3px); /* Se mueve 3 píxeles abajo */
+    }
+    100% {
+        transform: translateY(-3px); /* Regresa a la posición inicial */
+    }
+}
+
+
 
 
 /* Estilos de las preguntas Tipo2*/

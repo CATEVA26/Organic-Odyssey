@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organic Odyssey</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/elementosJuego.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -17,6 +18,7 @@
             font-optical-sizing: auto;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -26,17 +28,57 @@
                 <img src="/img/827842-1.png" alt="Logo juego Organic Odyssey" style="width: 61px; height: 57px;">
                 <span>Organic Odyssey</span>
             </header>
+            
+            <div class="volume-controls" onmouseover="playSound('hover-sound')">
+                <audio id="background-sound" src="sound/fondo.mp3" autoplay loop></audio>
+                <button class="volume-button" onclick="changeVolume(-0.3)" alt="bajar volumen">
+                    <i class="fas fa-volume-down"></i>
+                </button onmouseover="playSound('hover-sound')">
+                <button class="volume-button" onclick="changeVolume(0.1)" alt="subir volumen">
+                    <i class="fas fa-volume-up"></i>
+                </button onmouseover="playSound('hover-sound')">
+                <button class="volume-button" onclick="changeVolume(0.0)" alt="quitar volumen">
+                    <i class="fa-solid fa-volume-xmark"></i>                
+                </button>
+                <br><br>
+            </div>
+
             <section class="contenido">
-                <div class="opciones">
+                <div class="opciones animacion-imagen">
                     <img src="/img/quimica-3-1.png" alt="mascota del juego" style="width: 315px; height: 273px;">
+                </div>                  
+                <div class="botones" style="margin-bottom: 15px;">
+                    <button class="btn-Accion" onmouseover="playSound('hover-sound')" onclick="redirigir('niveles')">
+                      Nuevo Juego
+                      <span></span><span></span><span></span><span></span>
+                    </button>
                 </div>
-                <div style="margin-bottom: 20px;"><button class="btn-Accion" onclick="redirigir('niveles')">Nuevo Juego</button></div>
-                <div><button class="btn-conceptos">Revisar conceptos antes de empezar</button></div>
+
+                <div class="botones">
+                    <button class="btn-Accion" onmouseover="playSound('hover-sound')">
+                        Revisar conceptos
+                      <span></span><span></span><span></span><span></span>
+                    </button>
+                </div>
+
+            
+                <!-- Audio element -->
+                <audio id="hover-sound" src="sound/click.mp3"></audio>
+ 
             </section>
-            <img onclick="redirigir('ayudaJuego')" src="/img/help-1.svg" alt="icono de ayuda" width="78px" height="79px" style="padding-left: 20px;
-    margin-top: 70px; cursor: pointer;">
+              
+            <div>
+                <button alt="boton de ayuda" onmouseover="playSound('hover-sound')" style="padding-left: 20px; align-items: end;" class="hoveer button-help" onclick="redirigir('ayudaJuego')" >
+                    <i class="fa-regular fa-circle-question"></i>
+                </button>
+                
+            </div>
+            
         </div>
     </div>
     <script src="/js/scripts.js"></script>
+    <script src="/js/sound.js"></script>
+    <script src="/js/volume-controls.js"></script>
+
 </body>
 </html>
