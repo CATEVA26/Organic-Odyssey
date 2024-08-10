@@ -13,3 +13,151 @@
     height: auto;
     margin: 0 5px;
 }
+.button-help{
+
+        padding: 0; /* Elimina el relleno para asegurar que el botón tenga el tamaño especificado */
+        width: 80px;
+        height: 80px;
+        display: flex; /* Usa flexbox para alinear el contenido */
+        align-items: center; /* Alinea el contenido verticalmente al centro */
+        justify-content: center; /* Alinea el contenido horizontalmente al centro */
+        background-color: transparent; /* Fondo transparente para el botón */
+        border: none; /* Sin borde por defecto */
+        color: black; /* Color del ícono por defecto */
+        cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+        font-size: 45px; /* Tamaño del ícono, ajústalo según necesites */
+        transition: color 0.3s ease; /* Transición suave del color */
+
+    }
+
+.volume-controls {
+    display: flex; /* Usa flexbox para alinear los botones horizontalmente */
+    justify-content: flex-end;
+    gap: 10px; /* Espaciado entre botones */
+    margin-top: 7px;
+}
+  
+.volume-button {
+    background-color: transparent; /* Fondo transparente para los botones */
+    border: none; /* Sin borde por defecto */
+    color: black; /* Color del icono por defecto */
+    font-size: 20px; /* Tamaño del icono, ajusta según necesites */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: color 0.3s ease; /* Transición suave del color */
+}
+  
+.volume-button:hover {
+    color: rgb(68, 187, 191); /* Color del icono cuando pasas el mouse */
+}
+
+.hoveer:hover{
+    color: rgb(68, 187, 191); /* Color del icono cuando pasas el mouse */
+}
+
+  
+/* BOTONTES ANIMACION */
+.botones{
+    width: 250px; 
+    height: 50px;
+}
+
+
+.btn-Accion {
+    --c: #5af8e5;
+    color: #5af8e5; /* Cambiado a blanco para asegurar contraste */
+    font-size: 15px;
+    border: 0.3em solid var(--c);
+    border-radius: 0.5em;
+    width: 100%;
+    height: 100%;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: sans-serif;
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 3em;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background-color: black; /* Fondo negro para el botón */
+    cursor: pointer; /* Añadido para el cursor en hover */
+  }
+  
+  .btn-Accion span {
+    position: absolute;
+    width: 75%;
+    height: 100%;
+    background-color: var(--c);
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--n) - 1) * 25%);
+    transition: 0.5s;
+    transition-delay: calc((var(--n) - 1) * 0.1s);
+    z-index: -1;
+  }
+  
+  .btn-Accion:hover {
+    color: black;
+  }
+  
+  .btn-Accion:hover span {
+    transform: translateY(0) scale(2);
+  }
+  
+  .btn-Accion span:nth-child(1) {
+    --n: 1;
+  }
+  
+  .btn-Accion span:nth-child(2) {
+    --n: 2;
+  }
+  
+  .btn-Accion span:nth-child(3) {
+    --n: 3;
+  }
+  
+  .btn-Accion span:nth-child(4) {
+    --n: 4;
+  }
+  
+  
+  /* ANIMACION DE LAS IMAGENES */
+
+  @keyframes moveUpDown {
+    0% {
+      transform: translateY(-4px); /* Inicialmente 3 píxeles arriba */
+    }
+    50% {
+      transform: translateY(4px); /* A la mitad del tiempo, 3 píxeles abajo */
+    }
+    100% {
+      transform: translateY(-4px); /* Al final, vuelve a estar 3 píxeles arriba */
+    }
+  }
+  
+  .animacion-imagen img {
+    animation: moveUpDown 1s ease-in-out infinite; /* Ajusta la duración y el tipo de animación según prefieras */
+  }
+  
+
+  .game-character-tipo1 {
+    position: absolute; /* Necesario para el movimiento absoluto */
+    top: 50%; /* Ajusta la posición vertical según necesites */
+    left: -100px; /* Comienza fuera del área visible */
+    width: 200px; /* Ajusta el tamaño de la imagen según necesites */
+    height: auto; /* Mantén la proporción original */
+    animation: moveLeftRight 5s linear infinite; /* Aplicar la animación */
+  }
+  
+  @keyframes moveLeftRight {
+    0% {
+      transform: translateX(-100px); /* Comienza fuera a la izquierda */
+    }
+    50% {
+      transform: translateX(calc(100vw - 200px)); /* Mueve a la derecha (ajusta el valor según el ancho de la imagen) */
+    }
+    100% {
+      transform: translateX(-100px); /* Regresa al inicio */
+    }
+  }
+  

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Sound</title>
+</head>
+<body>
+    <button onmouseover="playSound('hover-sound')">Test Sound</button>
+    <audio id="hover-sound" src="/sound/click.mp3"></audio>
+
+    <script>
+        function playSound(soundId) {
+            var sound = document.getElementById(soundId);
+            if (sound) {
+                sound.play();
+            } else {
+                console.error('Sound element not found:', soundId);
+            }
+        }
+    </script>
+</body>
+</html>
