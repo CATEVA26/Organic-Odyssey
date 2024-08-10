@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Funcion para cambiar de pantalla
 function redirigir(pagina) {
-    comprobarPregunta()
     window.location.href = pagina + '.html';
 }
 
@@ -50,61 +49,78 @@ function comprobarPregunta() {
     if (idPreguntaActual.includes("Tipo2", 0)) {
         preguntaEncontrada = preguntasTipo2.find(p => p.preguntaID === idPreguntaActual)
         const verificarRespuestaTipo2 = (preguntaEncontrada) => {
-
+            let numPregunta = parseInt(String(preguntaEncontrada.preguntaID).charAt(8));
+            compararRespuestasTipo2(numPregunta, preguntaEncontrada)
         }
+        verificarRespuestaTipo2(preguntaEncontrada)
         alert(contadorRespuestasCorrectas)
     } else if (idPreguntaActual.includes("Tipo1", 0)) {
         preguntaEncontrada = preguntasTipo1.find(p => p.preguntaID === idPreguntaActual)
         const verificarRespuestaTipo1 = (preguntaEncontrada) => {
             let numPregunta = parseInt(String(preguntaEncontrada.preguntaID).charAt(8));
-            switch (numPregunta) {
-                case 1: //PROPANONA
-                    posibleRespuesta1 = document.querySelector('.formula-input.op1'); //O
-                    posibleRespuesta2 = document.querySelector('.formula-input.op2'); //CH
-                    posibleRespuesta1 = posibleRespuesta1.value.toUpperCase()
-                    posibleRespuesta2 = posibleRespuesta2.value.toUpperCase()
-                    respuestasCorrectas = preguntaEncontrada.respuestas
-            
-                    if (posibleRespuesta1 == respuetasCorrectas[0] && posibleRespuesta2 == respuetasCorrectas[1]) {
-                        contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100
-                        alert("La respuesta Es correcta")
-                    } else {
-                        alert("La respuesta Es incorrecta")
-                    }//TODO: Brit aca es la parte de las vidas en el else
-
-                    break;
-                case 2: //ETANOL
-                    posibleRespuesta1 = document.querySelector('.formula-input.op1'); //O
-                    posibleRespuesta2 = document.querySelector('.formula-input.op2'); //H
-                    posibleRespuesta1 = posibleRespuesta1.value.toUpperCase()
-                    posibleRespuesta2 = posibleRespuesta2.value.toUpperCase()
-                    respuestasCorrectas = preguntaEncontrada.respuestas
-            
-                    if (posibleRespuesta1 == respuestasCorrectas[0] && posibleRespuesta2 == respuestasCorrectas[1]) {
-                        contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100
-                        alert("La respuesta Es correcta")
-                    } else {
-                        alert("La respuesta Es incorrecta")
-                    }//TODO: Brit aca es la parte de las vidas en el else
-
-                    break;
-                case 3://PENTANOL
-                posibleRespuesta1 = document.querySelector('.formula-input.op1'); //O
-                    posibleRespuesta1 = posibleRespuesta1.value.toUpperCase()
-                    respuestasCorrectas = preguntaEncontrada.respuestas
-            
-                    if (posibleRespuesta1 == respuestasCorrectas[0]) {
-                        contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100
-                        alert("La respuesta Es correcta")
-                    } else {
-                        alert("La respuesta Es incorrecta")
-                    }//TODO: Brit aca es la parte de las vidas en el else
-
-                    break;
-            }
+            compararRespuestasTipo1(numPregunta, preguntaEncontrada);
         }
         verificarRespuestaTipo1(preguntaEncontrada)
         alert(contadorRespuestasCorrectas)
+    }
+}
+
+function compararRespuestasTipo2(numPregunta, preguntaEncontrada) {
+    switch (numPregunta) {
+        case 1:
+            break
+        case 2:
+            break
+        case 3:
+            break
+    }
+}
+
+function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
+    switch (numPregunta) {
+        case 1: //PROPANONA
+            posibleRespuesta1 = document.querySelector('.formula-input.op1'); //O
+            posibleRespuesta2 = document.querySelector('.formula-input.op2'); //CH
+            posibleRespuesta1 = posibleRespuesta1.value.toUpperCase();
+            posibleRespuesta2 = posibleRespuesta2.value.toUpperCase();
+            respuestasCorrectas = preguntaEncontrada.respuestas;
+
+            if (posibleRespuesta1 == respuetasCorrectas[0] && posibleRespuesta2 == respuetasCorrectas[1]) {
+                contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100;
+                alert("La respuesta Es correcta");
+            } else {
+                alert("La respuesta Es incorrecta");
+            } //TODO: Brit aca es la parte de las vidas en el else
+
+            break;
+        case 2: //ETANOL
+            posibleRespuesta1 = document.querySelector('.formula-input.op1'); //O
+            posibleRespuesta2 = document.querySelector('.formula-input.op2'); //H
+            posibleRespuesta1 = posibleRespuesta1.value.toUpperCase();
+            posibleRespuesta2 = posibleRespuesta2.value.toUpperCase();
+            respuestasCorrectas = preguntaEncontrada.respuestas;
+
+            if (posibleRespuesta1 == respuestasCorrectas[0] && posibleRespuesta2 == respuestasCorrectas[1]) {
+                contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100;
+                alert("La respuesta Es correcta");
+            } else {
+                alert("La respuesta Es incorrecta");
+            } //TODO: Brit aca es la parte de las vidas en el else
+
+            break;
+        case 3: //PENTANOL
+            posibleRespuesta1 = document.querySelector('.formula-input.op1'); //O
+            posibleRespuesta1 = posibleRespuesta1.value.toUpperCase();
+            respuestasCorrectas = preguntaEncontrada.respuestas;
+
+            if (posibleRespuesta1 == respuestasCorrectas[0]) {
+                contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100;
+                alert("La respuesta Es correcta");
+            } else {
+                alert("La respuesta Es incorrecta");
+            } //TODO: Brit aca es la parte de las vidas en el else
+
+            break;
     }
 }
 
