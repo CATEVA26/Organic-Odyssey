@@ -111,13 +111,28 @@ function comprobarPregunta() {
 }
 
 function compararRespuestasTipo2(numPregunta, preguntaEncontrada) {
-    switch (numPregunta) {
-        case 1:
-            break
-        case 2:
-            break
-        case 3:
-            break
+    const respuestasCorrectas = {
+        1: preguntaEncontrada.respuesta1,
+        2: preguntaEncontrada.respuesta2
+    };
+
+    let todasCorrectas = true;
+
+    // Recorrer cada posible respuesta en el arreglo posiblesRespuestas
+    preguntaEncontrada.posiblesRespuestas.forEach((respuesta, index) => {
+        const respuestaCorrecta = respuestasCorrectas[index + 1]; // Asegurarse de que la respuesta correcta esté definida
+
+        if (respuestaCorrecta && !respuesta.every((valor, i) => valor === respuestaCorrecta[i])) {
+            todasCorrectas = false;
+        }
+    });
+
+    if (todasCorrectas) {
+        contadorRespuestasCorrectas += 100;
+        alert("La respuesta es correcta");
+    } else {
+        alert("La respuesta es incorrecta");
+        // Aquí puedes manejar la lógica de quitar vidas o cualquier otra acción necesaria
     }
 }
 
@@ -265,15 +280,22 @@ function cargarPreguntaAleatoriaTipo1() {
 const preguntasTipo2 = [
     {
         preguntaID: 'pregunta1-Tipo2',
-        respuestas: ['Etanol', 'Pentanol']
+        respuesta1: ['img-etanol', 'btn-etanol'],
+        respuesta2: ['img-pentanol','btn-pentanol'], 
+        posiblesRespuestas: []
     },
     {
         preguntaID: 'pregunta2-Tipo2',
-        respuestas: ['Acetona', 'Pentanol']
+        respuesta1: ['img-acetona', 'btn-acetona'],
+        respuesta2: ['img-pentanol','btn-pentanol'], 
+        posiblesRespuestas: []
     },
     {
         preguntaID: 'pregunta3-Tipo2',
-        respuestas: ['Etanol', 'Acetona']
+        respuestas: ['Etanol', 'Acetona'],
+        respuesta1: ['img-etanol', 'btn-etanol'],
+        respuesta2: ['img-acetona','btn-acetona'], 
+        posiblesRespuestas: []
     },
 
 ];
@@ -282,7 +304,85 @@ function cargarPreguntaAleatoriaTipo2() {
     const idPreguntaAleatoria = preguntasTipo2[indiceAleatorio].preguntaID;
     cargarPregunta(idPreguntaAleatoria);
 }
+function dibujarLinea() {
+    let firstElement = null;
+    const elements = document.querySelectorAll('.element');
+    const svgContainer = document.getElementById('line-container');
+    let linesCount = 0;
 
+    elements.forEach(element => {
+        element.addEventListener('click', function () {
+            const rect = element.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
 
+            if (!firstElement) {
+                // Guardar el primer elemento seleccionado
+                firstElement = { x, y, id: element.id, type: element.tagName.toLowerCase() };
+            } else {
+                // Verificar si los elementos son de diferente tipo
+                if (firstElement.type !== element.tagName.toLowerCase()) {
+                    if (linesCount < 2) {
+                        // Crear una línea entre el primer y segundo elemento
+                        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                        line.setAttribute("x1", firstElement.x);
+                        line.setAttribute("y1", firstElement.y);
+                        line.setAttribute("x2", x);
+                        line.setAttribute("y2", y);
+                        line.setAttribute("stroke", "#b3ea51");
+                        line.setAttribute("stroke-width", "2");
 
+                        // Añadir la línea al contenedor SVG
+                        svgContainer.appendChild(line);
+                        linesCount++;
 
+                        let imgElement = firstElement.type === 'img' ? firstElement.id : element.id;
+                        let btnElement = firstElement.type === 'button' ? firstElement.id : element.id;
+
+                        // Actualizar posiblesRespuestas directamente en el objeto correspondiente
+                        preguntasTipo2.forEach(pregunta => {
+                            if (pregunta.preguntaID === idPreguntaActual) {
+                                pregunta.posiblesRespuestas.push([imgElement, btnElement]);
+                            }
+                        });
+
+                        // Imprimir mensaje con los elementos conectados
+                        console.log(`Conexión establecida entre ${firstElement.id} y ${element.id}`);
+                    } else {
+                        // Si ya hay 2 líneas, eliminar la más antigua y agregar la nueva
+                        svgContainer.removeChild(svgContainer.firstChild);
+
+                        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                        line.setAttribute("x1", firstElement.x);
+                        line.setAttribute("y1", firstElement.y);
+                        line.setAttribute("x2", x);
+                        line.setAttribute("y2", y);
+                        line.setAttribute("stroke", "#b3ea51");
+                        line.setAttribute("stroke-width", "2");
+
+                        svgContainer.appendChild(line);
+
+                        let imgElement = firstElement.type === 'img' ? firstElement.id : element.id;
+                        let btnElement = firstElement.type === 'button' ? firstElement.id : element.id;
+
+                        // Reemplazar la respuesta más antigua
+                        preguntasTipo2.forEach(pregunta => {
+                            if (pregunta.preguntaID === idPreguntaActual) {
+                                pregunta.posiblesRespuestas.shift();
+                                pregunta.posiblesRespuestas.push([imgElement, btnElement]);
+                            }
+                        });
+
+                        // Imprimir mensaje con los elementos conectados
+                        console.log(`Conexión establecida entre ${firstElement.id} y ${element.id}`);
+                    }
+                } else {
+                    console.log("No se puede conectar elementos del mismo tipo");
+                }
+
+                // Reiniciar el primer elemento para futuras selecciones
+                firstElement = null;
+            }
+        });
+    });
+}

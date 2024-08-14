@@ -69,7 +69,7 @@
                     </button>
                 </div>               
             </div>
-
+            <svg id="line-container"></svg>
         </div>
         <audio id="hover-sound" src="sound/click.mp3"></audio>
 
@@ -81,6 +81,7 @@
          window.onload = async function() {
             await cargarTemplates()
             cargarPreguntaAleatoriaTipo2();
+            dibujarLinea();
         }
     </script>
 </body>
