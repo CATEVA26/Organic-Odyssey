@@ -16,8 +16,7 @@
             font-optical-sizing: auto;
         }
     </style>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="contenedor-juego">
@@ -26,7 +25,7 @@
                 <div class="nivel-info">
                     <span class="nivel-label">NIVEL 1</span>
                     <div class="progress-bar">
-                        <div class="progress"></div>
+                        <div id="progress" class="progress"></div>
                     </div>
                 </div>
                 <div class="game-controls">
@@ -34,18 +33,12 @@
                     <img src="/img/time.png" alt="Tiempo" class="control-icon">
                     <span class="timer">3:00</span>
                 </div>
-                
             </header>
-
-            <div>
-
-            </div>
             <div class="lives">
                 <img src="/img/heart-full.png" alt="Life" class="life-icon">
                 <img src="/img/heart-full.png" alt="Life" class="life-icon">
                 <img src="/img/heart-empty.png" alt="Life lost" class="life-icon">
             </div>
-            
             <main class="game-content">
                 <div class="instruction-box">
                     <p>Completa los espacios en blanco con el símbolo</p>
@@ -63,13 +56,12 @@
                     <i class="fa-regular fa-circle-question"></i>
                 </button>
                 <div class="botones" style="margin-right: 20px;">
-                    <button class="btn-Accion" onmouseover="playSound('hover-sound')"alt="Botón siguiente" onclick="redirigir('puntuaciones')">
+                    <button class="btn-Accion" onmouseover="playSound('hover-sound')"alt="Botón siguiente" onclick="redirigir('preguntaTipo2')">
                         Siguiente
                       <span></span><span></span><span></span><span></span>
                     </button>
                 </div>               
             </div>
-
         </div>
         <audio id="hover-sound" src="sound/click.mp3"></audio>
     </div>
@@ -78,8 +70,18 @@
     <script src="/js/volume-controls.js"></script>
     <script>
         window.onload = async function() {
+            
             await cargarTemplates()
+            // Recuperar las vidas guardadas
+            const storedVidas = sessionStorage.getItem('vidas');
+            if (storedVidas !== null) {
+                vidas = parseInt(storedVidas, 10);
+            } else {
+                vidas = 3; // Valor inicial de vidas
+            }
+            actualizarVidas();
             cargarPreguntaAleatoriaTipo1();
+            updateProgressBar(); 
         }
     </script>
 </body>

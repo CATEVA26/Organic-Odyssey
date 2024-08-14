@@ -1,7 +1,7 @@
 let templatesCache = {};
 
 // Menu de pausa
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const pauseButton = document.querySelector('.control-icon[alt="Pausa"]');
     const pauseMenu = document.createElement('div');
     pauseMenu.classList.add('pause-menu');
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function startTimer() {
-        timerInterval = setInterval(function() {
+        timerInterval = setInterval(function () {
             if (timerDuration <= 0) {
                 clearInterval(timerInterval);
                 // Puedes agregar lógica adicional cuando el tiempo se agote
@@ -55,14 +55,14 @@ document.addEventListener("DOMContentLoaded", function() {
         clearInterval(timerInterval);
     }
 
-    pauseButton.addEventListener('click', function() {
+    pauseButton.addEventListener('click', function () {
         pauseMenu.style.display = 'flex';
         document.querySelector('.pantalla-juego').style.filter = 'blur(5px)';
         document.querySelector('.pantalla-juego').style.pointerEvents = 'none';
         stopTimer(); // Detener el temporizador al pausar
     });
 
-    resumeButton.addEventListener('click', function() {
+    resumeButton.addEventListener('click', function () {
         pauseMenu.style.display = 'none';
         document.querySelector('.pantalla-juego').style.filter = '';
         document.querySelector('.pantalla-juego').style.pointerEvents = '';
@@ -121,6 +121,30 @@ function compararRespuestasTipo2(numPregunta, preguntaEncontrada) {
     }
 }
 
+
+//VIDAS DEL JUGADOR
+// Variable global para manejar las vidas del jugador
+let vidas = 3;
+
+function actualizarVidas() {
+    const vidasElementos = document.querySelectorAll('.life-icon');
+    for (let i = 0; i < vidasElementos.length; i++) {
+        if (i < vidas) {
+            vidasElementos[i].src = '/img/heart-full.png'; // Corazón lleno
+        } else {
+            vidasElementos[i].src = '/img/heart-empty.png'; // Corazón vacío
+        }
+    }
+    sessionStorage.setItem('vidas', vidas.toString());
+}
+
+function verificarDerrota() {
+    if (vidas <= 0) {
+        alert('Has perdido todas tus vidas. Fin del juego.');
+        window.location.href = 'respuestaCorrecta.html';
+    }
+}
+
 function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
     alert("comparando..")
     switch (numPregunta) {
@@ -136,7 +160,12 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
                 alert("La respuesta Es correcta");
             } else {
                 alert("La respuesta Es incorrecta");
-            } //TODO: Brit aca es la parte de las vidas en el else
+                vidas -= 1;
+                actualizarVidas();
+                if (vidas > 0) {
+                    verificarDerrota();
+                }
+            } 
 
             break;
         case 2: //ETANOL
@@ -151,7 +180,12 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
                 alert("La respuesta Es correcta");
             } else {
                 alert("La respuesta Es incorrecta");
-            } //TODO: Brit aca es la parte de las vidas en el else
+                vidas -= 1;
+                actualizarVidas();
+                if (vidas > 0) {
+                    verificarDerrota();
+                }
+            } 
 
             break;
         case 3: //PENTANOL
@@ -164,8 +198,12 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
                 alert("La respuesta Es correcta");
             } else {
                 alert("La respuesta Es incorrecta");
-            } //TODO: Brit aca es la parte de las vidas en el else
-
+                vidas -= 1;
+                actualizarVidas();
+                if (vidas > 0) {
+                    verificarDerrota();
+                }
+            }   
             break;
     }
 }
@@ -194,16 +232,16 @@ async function cargarTemplates() {
 // Modificar los estilos de los cuadros de entrada
 const preguntas = {
     'pregunta1-Tipo1': {
-        op1: { width: '40px', height: '40px', top: '270px', left: '48.7%' }, 
+        op1: { width: '40px', height: '40px', top: '270px', left: '48.7%' },
         op2: { width: '70px', height: '40px', top: '405px', left: '53%' }
     },
-    'pregunta2-Tipo1':{
-        op1: { width: '30px', height: '30px', top: '320px', left:'53%'},
-        op2: { width: '30px', height: '30px', top: '403px', left:'51.5%'}
+    'pregunta2-Tipo1': {
+        op1: { width: '30px', height: '30px', top: '320px', left: '53%' },
+        op2: { width: '30px', height: '30px', top: '403px', left: '51.5%' }
     },
-    'pregunta3-Tipo1':{
-        op1: { width: '80px', height: '50px', top: '270px', left:'53%'},
-        op2: { width: '30px', height: '30px', top: '403px', left:'51.5%'}
+    'pregunta3-Tipo1': {
+        op1: { width: '80px', height: '50px', top: '270px', left: '53%' },
+        op2: { width: '30px', height: '30px', top: '403px', left: '51.5%' }
     },
 };
 function aplicarEstilosPregunta(idPregunta) {
@@ -230,7 +268,7 @@ function cargarPregunta(idPregunta) {
         const contenido = plantilla.content.cloneNode(true);
         contenedorJuego.innerHTML = '';
         contenedorJuego.appendChild(contenido);
-        
+
         aplicarEstilosPregunta(idPregunta);
     } else {
         console.error(`El template con ID ${idPregunta} no se encontró.`);

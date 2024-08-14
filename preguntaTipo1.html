@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,16 +10,18 @@
     <link rel="stylesheet" href="styles/elementosJuego.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
     <style>
         body {
             font-family: "DM Sans", sans-serif;
             font-optical-sizing: auto;
         }
     </style>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
     <div class="contenedor-juego">
         <div class="pantalla-juego">
@@ -26,7 +29,7 @@
                 <div class="nivel-info">
                     <span class="nivel-label">NIVEL 1</span>
                     <div class="progress-bar">
-                        <div class="progress"></div>
+                        <div id="progress" class="progress"></div>
                     </div>
                 </div>
                 <div class="game-controls">
@@ -34,18 +37,12 @@
                     <img src="/img/time.png" alt="Tiempo" class="control-icon">
                     <span class="timer">3:00</span>
                 </div>
-                
             </header>
-
-            <div>
-
-            </div>
             <div class="lives">
                 <img src="/img/heart-full.png" alt="Life" class="life-icon">
                 <img src="/img/heart-full.png" alt="Life" class="life-icon">
-                <img src="/img/heart-empty.png" alt="Life lost" class="life-icon">
+                <img src="/img/heart-full.png" alt="Life" class="life-icon">
             </div>
-            
             <main class="game-content">
                 <div class="instruction-box">
                     <p>Completa los espacios en blanco con el símbolo</p>
@@ -58,17 +55,19 @@
             </main>
             <img src="/img/quimica-char-rope.png" alt="Imagen de la mascota del juego" class="game-character-tipo1">
             <div class="bottom-buttons">
-                <button alt="boton de ayuda" onmouseover="playSound('hover-sound')" style="padding-left: 20px; align-items: end; margin-bottom: 25px !important;" class="hoveer button-help" onclick="redirigir('ayudaJuego')" >
+                <button alt="boton de ayuda" onmouseover="playSound('hover-sound')"
+                    style="padding-left: 20px; align-items: end; margin-bottom: 25px !important;"
+                    class="hoveer button-help" onclick="redirigir('ayudaJuego')">
                     <i class="fa-regular fa-circle-question"></i>
                 </button>
                 <div class="botones" style="margin-right: 20px;">
-                    <button class="btn-Accion" onmouseover="playSound('hover-sound')"alt="Botón siguiente" onclick="redirigir('preguntaTipo2')">
+                    <button class="btn-Accion" onmouseover="playSound('hover-sound')" alt="Botón siguiente"
+                        onclick="redirigir('preguntaTipo1-2')">
                         Siguiente
-                      <span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span>
                     </button>
-                </div>               
+                </div>
             </div>
-
         </div>
         <audio id="hover-sound" src="sound/click.mp3"></audio>
     </div>
@@ -76,10 +75,12 @@
     <script src="/js/sound.js"></script>
     <script src="/js/volume-controls.js"></script>
     <script>
-        window.onload = async function() {
+        window.onload = async function () {
             await cargarTemplates()
             cargarPreguntaAleatoriaTipo1();
+            updateProgressBar();
         }
     </script>
 </body>
+
 </html>
