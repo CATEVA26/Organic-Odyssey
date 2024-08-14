@@ -146,6 +146,7 @@ function verificarDerrota() {
 }
 
 function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
+    let esCorrecto = false;
     alert("comparando..")
     switch (numPregunta) {
         case 1: //PROPANONA
@@ -158,6 +159,7 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
             if (posibleRespuesta1 == respuetasCorrectas[0] && posibleRespuesta2 == respuetasCorrectas[1]) {
                 contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100;
                 alert("La respuesta Es correcta");
+                esCorrecto = true;
             } else {
                 alert("La respuesta Es incorrecta");
                 vidas -= 1;
@@ -178,6 +180,7 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
             if (posibleRespuesta1 == respuestasCorrectas[0] && posibleRespuesta2 == respuestasCorrectas[1]) {
                 contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100;
                 alert("La respuesta Es correcta");
+                esCorrecto = true;
             } else {
                 alert("La respuesta Es incorrecta");
                 vidas -= 1;
@@ -196,6 +199,7 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
             if (posibleRespuesta1 == respuestasCorrectas[0]) {
                 contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100;
                 alert("La respuesta Es correcta");
+                esCorrecto = true;
             } else {
                 alert("La respuesta Es incorrecta");
                 vidas -= 1;
@@ -319,6 +323,45 @@ function cargarPreguntaAleatoriaTipo2() {
     const indiceAleatorio = Math.floor(Math.random() * preguntasTipo2.length);
     const idPreguntaAleatoria = preguntasTipo2[indiceAleatorio].preguntaID;
     cargarPregunta(idPreguntaAleatoria);
+}
+
+let preguntasCompletadas = 0;
+const totalPreguntas = 3; // Número total de preguntas
+
+function updateProgressBar() {
+    const progressElement = document.getElementById('progress');
+    const porcentajeProgreso = (preguntasCompletadas / totalPreguntas) * 100;
+    progressElement.style.width = `${porcentajeProgreso}%`;
+}
+
+function incrementarPreguntasCompletadas() {
+    preguntasCompletadas += 1;
+    sessionStorage.setItem('preguntasCompletadas', preguntasCompletadas.toString());
+    updateProgressBar(); // Actualiza la barra de progreso cada vez que se completa una pregunta
+}
+
+function comprobarPregunta() {
+    const plantilla = templatesCache[idPreguntaActual];
+    let preguntaEncontrada;
+
+    if (idPreguntaActual.includes("Tipo2", 0)) {
+        preguntaEncontrada = preguntasTipo2.find(p => p.preguntaID === idPreguntaActual);
+        const verificarRespuestaTipo2 = (preguntaEncontrada) => {
+            let numPregunta = parseInt(String(preguntaEncontrada.preguntaID).charAt(8));
+            compararRespuestasTipo2(numPregunta, preguntaEncontrada);
+        };
+        verificarRespuestaTipo2(preguntaEncontrada);
+    } else if (idPreguntaActual.includes("Tipo1", 0)) {
+        preguntaEncontrada = preguntasTipo1.find(p => p.preguntaID === idPreguntaActual);
+        const verificarRespuestaTipo1 = (preguntaEncontrada) => {
+            let numPregunta = parseInt(String(preguntaEncontrada.preguntaID).charAt(8));
+            compararRespuestasTipo1(numPregunta, preguntaEncontrada);
+        };
+        verificarRespuestaTipo1(preguntaEncontrada);
+    }
+
+    // Independientemente de si la respuesta es correcta o incorrecta, incrementar el progreso
+    incrementarPreguntasCompletadas();
 }
 
 

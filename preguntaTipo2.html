@@ -84,6 +84,7 @@
     <script>
         window.onload = async function () {
             await cargarTemplates()
+            cargarPreguntaAleatoriaTipo2();
             // Recuperar las vidas guardadas
             const storedVidas = sessionStorage.getItem('vidas');
             if (storedVidas !== null) {
@@ -92,8 +93,12 @@
                 vidas = 3; // Valor inicial de vidas
             }
             actualizarVidas();
-            cargarPreguntaAleatoriaTipo2();
+            //actualizar el progreso
+            const storedPreguntasCompletadas = sessionStorage.getItem('preguntasCompletadas');
+            preguntasCompletadas = storedPreguntasCompletadas !== null ? parseInt(storedPreguntasCompletadas, 10) : 0;
+
             updateProgressBar();
+            
         }
     </script>
 </body>
