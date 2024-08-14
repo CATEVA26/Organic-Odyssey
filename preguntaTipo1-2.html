@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organic Odyssey</title>
     <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/elementosJuego.css">
     <link rel="stylesheet" href="styles/preguntaTipo1.css">
-    <link rel="stylesheet" href="styles/preguntaTipo2.css">
+    <link rel="stylesheet" href="styles/elementosJuego.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
@@ -35,35 +34,36 @@
                     <img src="/img/time.png" alt="Tiempo" class="control-icon">
                     <span class="timer">3:00</span>
                 </div>
+                
             </header>
+
+            <div>
+
+            </div>
             <div class="lives">
                 <img src="/img/heart-full.png" alt="Life" class="life-icon">
                 <img src="/img/heart-full.png" alt="Life" class="life-icon">
-                <img src="/img/heart-full.png" alt="Life" class="life-icon">
+                <img src="/img/heart-empty.png" alt="Life lost" class="life-icon">
             </div>
+            
             <main class="game-content">
                 <div class="instruction-box">
-                    <p>Une el compuesto con su nombre</p>
+                    <p>Completa los espacios en blanco con el símbolo</p>
                 </div>
-                <div class="selection-game">
-                    <div class="chemical-formula-tipo2">
-                        <img src="/img/compuesto-etanol.png" alt="Formula química 1" class="formula-image">
-                        <img src="/img/compuesto-pentanol.png" alt="Formula química 2" class="formula-image">
-                    </div>
-                    <div class="options-container">
-                        <button class="option-btn">Metano</button>
-                        <button class="option-btn">Etanol</button>
-                        <button class="option-btn">Pentanol</button>
-                    </div>
+                <div class="chemical-formula">
+                    <img src="/img/compuesto-etanol.png" alt="formula química de la acetona" class="formula-img">
+                    <input type="text" class="formula-input op1">
+                    <input type="text" class="formula-input op2">
+                    <p class="chemical-name">ETANOL</p>
                 </div>
             </main>
-            <img src="/img/quimica-char-pencil.png" alt="Game-character" class="game-character-tipo2">
+            <img src="/img/quimica-char-rope.png" alt="Imagen de la mascota del juego" class="game-character-tipo1">
             <div class="bottom-buttons">
                 <button alt="boton de ayuda" onmouseover="playSound('hover-sound')" style="padding-left: 20px; align-items: end; margin-bottom: 25px !important;" class="hoveer button-help" onclick="redirigir('ayudaJuego')" >
                     <i class="fa-regular fa-circle-question"></i>
                 </button>
-                <div class="botones" style="margin-right: 25px;">
-                    <button class="btn-Accion" onmouseover="playSound('hover-sound')"alt="Botón siguiente" onclick="redirigir('preguntaTipo1-2')">
+                <div class="botones" style="margin-right: 20px;">
+                    <button class="btn-Accion" onmouseover="playSound('hover-sound')"alt="Botón siguiente" onclick="redirigir('puntuaciones')">
                         Siguiente
                       <span></span><span></span><span></span><span></span>
                     </button>
@@ -72,15 +72,14 @@
 
         </div>
         <audio id="hover-sound" src="sound/click.mp3"></audio>
-
     </div>
-    <script src="/js/scripts.js"></script>
+    <script src="/js/scripts.js" defer></script>
     <script src="/js/sound.js"></script>
     <script src="/js/volume-controls.js"></script>
     <script>
-         window.onload = async function() {
+        window.onload = async function() {
             await cargarTemplates()
-            cargarPreguntaAleatoriaTipo2();
+            cargarPreguntaAleatoriaTipo1();
         }
     </script>
 </body>
