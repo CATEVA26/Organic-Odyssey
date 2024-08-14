@@ -120,3 +120,16 @@
 .pause-btn:hover {
     background-color: #35a6a2;
 }
+
+.element {
+    cursor: pointer;
+    text-align: center;
+}
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Evita que el SVG interfiera con los clics */
+}

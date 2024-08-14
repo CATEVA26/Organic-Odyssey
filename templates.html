@@ -48,13 +48,13 @@
     </div>
     <div class="selection-game">
         <div class="chemical-formula-tipo2">
-            <img src="/img/compuesto-etanol.png" alt="Formula química 1" class="formula-image">
-            <img src="/img/compuesto-pentanol.png" alt="Formula química 2" class="formula-image">
+            <img src="/img/compuesto-etanol.png"  id="img-etanol" alt="Formula química 1" class="formula-image element">
+            <img src="/img/compuesto-pentanol.png" id="img-pentanol" alt="Formula química 2" class="formula-image element">
         </div>
         <div class="options-container">
-            <button class="option-btn">Metano</button>
-            <button class="option-btn">Etanol</button>
-            <button class="option-btn">Pentanol</button>
+            <button class="option-btn element" id="btn-metano">Metano</button>
+            <button class="option-btn element" id="btn-etanol">Etanol</button>
+            <button class="option-btn element" id="btn-pentanol">Pentanol</button>
         </div>
     </div>
 </template>
@@ -65,13 +65,13 @@
     </div>
     <div class="selection-game">
         <div class="chemical-formula-tipo2">
-            <img src="/img/compuesto-acetona.png" alt="Formula química 1" class="formula-image">
-            <img src="/img/compuesto-pentanol.png" alt="Formula química 2" class="formula-image">
+            <img src="/img/compuesto-acetona.png" id="img-acetona" alt="Formula química 1" class="formula-image element">
+            <img src="/img/compuesto-pentanol.png" id="img-pentanol" alt="Formula química 2" class="formula-image element">
         </div>
         <div class="options-container">
-            <button class="option-btn">Acetona</button>
-            <button class="option-btn">Pentanol</button>
-            <button class="option-btn">Metano</button>
+            <button class="option-btn element" id="btn-acetona">Acetona</button>
+            <button class="option-btn element" id="btn-pentanol">Pentanol</button>
+            <button class="option-btn element" id="btn-metano">Metano</button>
         </div>
     </div>
 </template>
@@ -82,13 +82,15 @@
     </div>
     <div class="selection-game">
         <div class="chemical-formula-tipo2">
-            <img src="/img/compuesto-etanol.png" alt="Formula química 1" class="formula-image">
-            <img src="/img/compuesto-acetona.png" alt="Formula química 2" class="formula-image">
+            
+            <div class="element" id="img-etanol"><img src="/img/compuesto-etanol.png"  alt="Formula química 1" class="formula-image"></div>
+            <div class="element" id="img-acetona"><img src="/img/compuesto-acetona.png"alt="Formula química 2" class="formula-image"></div>
+            
         </div>
         <div class="options-container">
-            <button class="option-btn">Pentanol</button>
-            <button class="option-btn">Acetona</button>
-            <button class="option-btn">Etanol</button>
+            <button class="option-btn element" id="btn-pentanol" >Pentanol</button>
+            <button class="option-btn element" id="btn-acetona" >Acetona</button>
+            <button class="option-btn element" id="btn-etanol"  >Etanol</button>
         </div>
     </div>
 </template>
