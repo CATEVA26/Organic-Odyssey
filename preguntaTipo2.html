@@ -25,7 +25,7 @@
         <div class="pantalla-juego">
             <header class="barra-superior">
                 <div class="nivel-info">
-                    <span class="nivel-label">NIVEL 2</span>
+                    <span class="nivel-label">NIVEL 1</span>
                     <div class="progress-bar">
                         <div class="progress"></div>
                     </div>
@@ -80,8 +80,17 @@
     <script>
          window.onload = async function() {
             await cargarTemplates()
+            // Recuperar las vidas guardadas
+            const storedVidas = sessionStorage.getItem('vidas');
+            if (storedVidas !== null) {
+                vidas = parseInt(storedVidas, 10);
+            } else {
+                vidas = 3; // Valor inicial de vidas
+            }
+            actualizarVidas();
             cargarPreguntaAleatoriaTipo2();
-            dibujarLinea();
+            //updateProgressBar(); 
+            dibujarLinea()
         }
     </script>
 </body>
