@@ -132,6 +132,11 @@ function compararRespuestasTipo2(numPregunta, preguntaEncontrada) {
         alert("La respuesta es correcta");
     } else {
         alert("La respuesta es incorrecta");
+        vidas -= 1;
+                actualizarVidas();
+                if (vidas > 0) {
+                    verificarDerrota();
+                }
         // Aquí puedes manejar la lógica de quitar vidas o cualquier otra acción necesaria
     }
 }
@@ -170,7 +175,7 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
             posibleRespuesta2 = posibleRespuesta2.value.toUpperCase();
             respuestasCorrectas = preguntaEncontrada.respuestas;
 
-            if (posibleRespuesta1 == respuetasCorrectas[0] && posibleRespuesta2 == respuetasCorrectas[1]) {
+            if (posibleRespuesta1 == respuestasCorrectas[0] && posibleRespuesta2 == respuestasCorrectas[1]) {
                 contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100;
                 alert("La respuesta Es correcta");
             } else {
