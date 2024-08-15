@@ -39,16 +39,6 @@ document.addEventListener("DOMContentLoaded", function() {
         return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
     }
 
-    function resetScore() {
-        // Inicializar puntos y numeroPreguntas como enteros
-        let puntos = 0;
-        let numeroPreguntas = 0;
-
-        // Guardar los valores en localStorage
-        localStorage.setItem('puntos', puntos.toString());
-        localStorage.setItem('numeroPreguntas', numeroPreguntas.toString());
-    }
-
 
     function startTimer() {
         timerInterval = setInterval(function() {
@@ -515,13 +505,23 @@ function addPlayerScore() {
 
     if (playerName) {
         const newScore = { name: playerName, points: localStorage.getItem('puntos')};
-        localStorage.setItem('puntos', 0);
+        resetScore();
         saveScoreToLocalStorage(newScore);
         loadScoresFromLocalStorage();
     } else {
         alert("El nombre del jugador no puede estar vacío.");
         loadScoresFromLocalStorage();
     }
+}
+
+function resetScore() {
+    // Inicializar puntos y numeroPreguntas como enteros
+    let puntos = 0;
+    let numeroPreguntas = 0;
+
+    // Guardar los valores en localStorage
+    localStorage.setItem('puntos', puntos.toString());
+    localStorage.setItem('numeroPreguntas', numeroPreguntas.toString());
 }
 
 // Ordena los puntajes en orden descendente
