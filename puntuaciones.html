@@ -69,6 +69,7 @@
 
     <script>
         window.onload = function () {
+            loadScoresFromLocalStorage();
             const newPlayer = getQueryParam('newPlayer');
             if (newPlayer) {
                 addPlayerScore();

@@ -195,6 +195,7 @@ function compararRespuestasTipo2(numPregunta, preguntaEncontrada) {
     if (todasCorrectas) {
         contadorRespuestasCorrectas += 100;
         alert("La respuesta es correcta");
+        return true
     } else {
         alert("La respuesta es incorrecta");
         vidas -= 1;
@@ -202,7 +203,7 @@ function compararRespuestasTipo2(numPregunta, preguntaEncontrada) {
         if (vidas > 0) {
             verificarDerrota();
         }
-        // Aquí puedes manejar la lógica de quitar vidas o cualquier otra acción necesaria
+        return false
     }
 }
 
@@ -245,6 +246,7 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
                 alert("La respuesta Es correcta");
                 return true
             } else {
+                localStorage.setItem('puntos', contadorRespuestasCorrectas.toString());
                 alert("La respuesta Es incorrecta");
                 vidas -= 1;
                 actualizarVidas();
@@ -264,9 +266,11 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
 
             if (posibleRespuesta1 == respuestasCorrectas[0] && posibleRespuesta2 == respuestasCorrectas[1]) {
                 contadorRespuestasCorrectas = contadorRespuestasCorrectas + 100;
+                localStorage.setItem('puntos', contadorRespuestasCorrectas.toString());
                 alert("La respuesta Es correcta");
                 return true
             } else {
+                localStorage.setItem('puntos', contadorRespuestasCorrectas.toString());
                 alert("La respuesta Es incorrecta");
                 vidas -= 1;
                 actualizarVidas();
@@ -284,9 +288,11 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
 
             if (posibleRespuesta1 == respuestasCorrectas[0]) {
                 contadorRespuestasCorrectas = contadorRespuestasCorrectas + 100;
+                localStorage.setItem('puntos', contadorRespuestasCorrectas.toString());
                 alert("La respuesta Es correcta");
                 return true
             } else {
+                localStorage.setItem('puntos', contadorRespuestasCorrectas.toString());
                 alert("La respuesta Es incorrecta");
                 vidas -= 1;
                 actualizarVidas();

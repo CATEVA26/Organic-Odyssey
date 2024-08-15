@@ -33,7 +33,7 @@
                     <img src="/img/back.png" alt="Volver" tabindex="-1">
                 </button>
                 <h1 tabindex="2">NIVELES</h1>
-                <button onmouseover="playSound('hover-sound')" class="btn-home" onclick="redirigir('index')"
+                <button onmouseover="playSound('hover-sound')" class="btn-home" onclick="window.location.href='index.html'";
                     tabindex="3">
                     <img src="/img/home.png" alt="Inicio" tabindex="-1">
                 </button>
@@ -78,6 +78,7 @@
         window.onload = function () {
             const storedVidas = sessionStorage.setItem('vidas', 3);
             updateProgressBar();
+            resetScore()
         }
     </script>
 </body>
