@@ -189,12 +189,11 @@ function compararRespuestasTipo2(numPregunta, preguntaEncontrada) {
 
     if (todasCorrectas) {
         contadorRespuestasCorrectas = contadorRespuestasCorrectas + 100; 
-        alert(contadorRespuestasCorrectas)
         localStorage.setItem('puntos', contadorRespuestasCorrectas.toString()); 
         alert("La respuesta es correcta.");
         return true;
     } else {
-        alert(contadorRespuestasCorrectas)
+        localStorage.setItem('puntos', contadorRespuestasCorrectas.toString()); 
         alert("La respuesta es incorrecta.");
         return false;
     }
