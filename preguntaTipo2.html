@@ -82,9 +82,17 @@
     <script>
          window.onload = async function() {
             await cargarTemplates()
+            // Recuperar las vidas guardadas
+            const storedVidas = sessionStorage.getItem('vidas');
+            if (storedVidas !== null) {
+                vidas = parseInt(storedVidas, 10);
+            } else {
+                vidas = 3; // Valor inicial de vidas
+            }
+            actualizarVidas();
             cargarPreguntaAleatoriaTipo2();
-            dibujarLinea();
-            updateProgressBar();
+            updateProgressBar(); 
+            dibujarLinea()
         }
 
         function resetScore() {
