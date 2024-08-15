@@ -1,7 +1,7 @@
 let templatesCache = {};
 
 // Menu de pausa
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     const pauseButton = document.querySelector('.control-icon[alt="Pausa"]');
     const pauseMenu = document.createElement('div');
     pauseMenu.classList.add('pause-menu');
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function startTimer() {
-        timerInterval = setInterval(function () {
+        timerInterval = setInterval(function() {
             if (timerDuration <= 0) {
                 clearInterval(timerInterval);
                 // Puedes agregar lógica adicional cuando el tiempo se agote
@@ -55,14 +55,14 @@ document.addEventListener("DOMContentLoaded", function () {
         clearInterval(timerInterval);
     }
 
-    pauseButton.addEventListener('click', function () {
+    pauseButton.addEventListener('click', function() {
         pauseMenu.style.display = 'flex';
         document.querySelector('.pantalla-juego').style.filter = 'blur(5px)';
         document.querySelector('.pantalla-juego').style.pointerEvents = 'none';
         stopTimer(); // Detener el temporizador al pausar
     });
 
-    resumeButton.addEventListener('click', function () {
+    resumeButton.addEventListener('click', function() {
         pauseMenu.style.display = 'none';
         document.querySelector('.pantalla-juego').style.filter = '';
         document.querySelector('.pantalla-juego').style.pointerEvents = '';
@@ -111,37 +111,28 @@ function comprobarPregunta() {
 }
 
 function compararRespuestasTipo2(numPregunta, preguntaEncontrada) {
-    switch (numPregunta) {
-        case 1:
-            break
-        case 2:
-            break
-        case 3:
-            break
-    }
-}
+    const respuestasCorrectas = {
+        1: preguntaEncontrada.respuesta1,
+        2: preguntaEncontrada.respuesta2
+    };
 
+    let todasCorrectas = true;
 
-//VIDAS DEL JUGADOR
-// Variable global para manejar las vidas del jugador
-let vidas = 3;
+    // Recorrer cada posible respuesta en el arreglo posiblesRespuestas
+    preguntaEncontrada.posiblesRespuestas.forEach((respuesta, index) => {
+        const respuestaCorrecta = respuestasCorrectas[index + 1]; // Asegurarse de que la respuesta correcta esté definida
 
-function actualizarVidas() {
-    const vidasElementos = document.querySelectorAll('.life-icon');
-    for (let i = 0; i < vidasElementos.length; i++) {
-        if (i < vidas) {
-            vidasElementos[i].src = '/img/heart-full.png'; // Corazón lleno
-        } else {
-            vidasElementos[i].src = '/img/heart-empty.png'; // Corazón vacío
+        if (respuestaCorrecta && !respuesta.every((valor, i) => valor === respuestaCorrecta[i])) {
+            todasCorrectas = false;
         }
-    }
-    sessionStorage.setItem('vidas', vidas.toString());
-}
+    });
 
-function verificarDerrota() {
-    if (vidas <= 0) {
-        alert('Has perdido todas tus vidas. Fin del juego.');
-        window.location.href = 'respuestaCorrecta.html';
+    if (todasCorrectas) {
+        contadorRespuestasCorrectas += 100;
+        alert("La respuesta es correcta");
+    } else {
+        alert("La respuesta es incorrecta");
+        // Aquí puedes manejar la lógica de quitar vidas o cualquier otra acción necesaria
     }
 }
 
@@ -160,12 +151,7 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
                 alert("La respuesta Es correcta");
             } else {
                 alert("La respuesta Es incorrecta");
-                vidas -= 1;
-                actualizarVidas();
-                if (vidas > 0) {
-                    verificarDerrota();
-                }
-            } 
+            } //TODO: Brit aca es la parte de las vidas en el else
 
             break;
         case 2: //ETANOL
@@ -180,12 +166,7 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
                 alert("La respuesta Es correcta");
             } else {
                 alert("La respuesta Es incorrecta");
-                vidas -= 1;
-                actualizarVidas();
-                if (vidas > 0) {
-                    verificarDerrota();
-                }
-            } 
+            } //TODO: Brit aca es la parte de las vidas en el else
 
             break;
         case 3: //PENTANOL
@@ -198,12 +179,8 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
                 alert("La respuesta Es correcta");
             } else {
                 alert("La respuesta Es incorrecta");
-                vidas -= 1;
-                actualizarVidas();
-                if (vidas > 0) {
-                    verificarDerrota();
-                }
-            }   
+            } //TODO: Brit aca es la parte de las vidas en el else
+
             break;
     }
 }
@@ -232,16 +209,16 @@ async function cargarTemplates() {
 // Modificar los estilos de los cuadros de entrada
 const preguntas = {
     'pregunta1-Tipo1': {
-        op1: { width: '40px', height: '40px', top: '270px', left: '48.7%' },
+        op1: { width: '40px', height: '40px', top: '270px', left: '48.7%' }, 
         op2: { width: '70px', height: '40px', top: '405px', left: '53%' }
     },
-    'pregunta2-Tipo1': {
-        op1: { width: '30px', height: '30px', top: '320px', left: '53%' },
-        op2: { width: '30px', height: '30px', top: '403px', left: '51.5%' }
+    'pregunta2-Tipo1':{
+        op1: { width: '30px', height: '30px', top: '320px', left:'53%'},
+        op2: { width: '30px', height: '30px', top: '403px', left:'51.5%'}
     },
-    'pregunta3-Tipo1': {
-        op1: { width: '80px', height: '50px', top: '270px', left: '53%' },
-        op2: { width: '30px', height: '30px', top: '403px', left: '51.5%' }
+    'pregunta3-Tipo1':{
+        op1: { width: '80px', height: '50px', top: '270px', left:'53%'},
+        op2: { width: '30px', height: '30px', top: '403px', left:'51.5%'}
     },
 };
 function aplicarEstilosPregunta(idPregunta) {
@@ -268,7 +245,7 @@ function cargarPregunta(idPregunta) {
         const contenido = plantilla.content.cloneNode(true);
         contenedorJuego.innerHTML = '';
         contenedorJuego.appendChild(contenido);
-
+        
         aplicarEstilosPregunta(idPregunta);
     } else {
         console.error(`El template con ID ${idPregunta} no se encontró.`);
@@ -303,15 +280,22 @@ function cargarPreguntaAleatoriaTipo1() {
 const preguntasTipo2 = [
     {
         preguntaID: 'pregunta1-Tipo2',
-        respuestas: ['Etanol', 'Pentanol']
+        respuesta1: ['img-etanol', 'btn-etanol'],
+        respuesta2: ['img-pentanol','btn-pentanol'], 
+        posiblesRespuestas: []
     },
     {
         preguntaID: 'pregunta2-Tipo2',
-        respuestas: ['Acetona', 'Pentanol']
+        respuesta1: ['img-acetona', 'btn-acetona'],
+        respuesta2: ['img-pentanol','btn-pentanol'], 
+        posiblesRespuestas: []
     },
     {
         preguntaID: 'pregunta3-Tipo2',
-        respuestas: ['Etanol', 'Acetona']
+        respuestas: ['Etanol', 'Acetona'],
+        respuesta1: ['img-etanol', 'btn-etanol'],
+        respuesta2: ['img-acetona','btn-acetona'], 
+        posiblesRespuestas: []
     },
 
 ];
@@ -320,56 +304,85 @@ function cargarPreguntaAleatoriaTipo2() {
     const idPreguntaAleatoria = preguntasTipo2[indiceAleatorio].preguntaID;
     cargarPregunta(idPreguntaAleatoria);
 }
+function dibujarLinea() {
+    let firstElement = null;
+    const elements = document.querySelectorAll('.element');
+    const svgContainer = document.getElementById('line-container');
+    let linesCount = 0;
 
+    elements.forEach(element => {
+        element.addEventListener('click', function () {
+            const rect = element.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
 
-// Agregar jugador a la tabla de puntuacion
-function addPlayerScore() {
-    const playerName = prompt("Ingrese el nombre del jugador:");
-    
-    if (playerName) {
-        const newScore = { name: playerName, points: contadorRespuestasCorrectas};
-        saveScoreToLocalStorage(newScore);
-        loadScoresFromLocalStorage();
-    } else {
-        alert("El nombre del jugador no puede estar vacío.");
-    }
+            if (!firstElement) {
+                // Guardar el primer elemento seleccionado
+                firstElement = { x, y, id: element.id, type: element.tagName.toLowerCase() };
+            } else {
+                // Verificar si los elementos son de diferente tipo
+                if (firstElement.type !== element.tagName.toLowerCase()) {
+                    if (linesCount < 2) {
+                        // Crear una línea entre el primer y segundo elemento
+                        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                        line.setAttribute("x1", firstElement.x);
+                        line.setAttribute("y1", firstElement.y);
+                        line.setAttribute("x2", x);
+                        line.setAttribute("y2", y);
+                        line.setAttribute("stroke", "#b3ea51");
+                        line.setAttribute("stroke-width", "2");
+
+                        // Añadir la línea al contenedor SVG
+                        svgContainer.appendChild(line);
+                        linesCount++;
+
+                        let imgElement = firstElement.type === 'img' ? firstElement.id : element.id;
+                        let btnElement = firstElement.type === 'button' ? firstElement.id : element.id;
+
+                        // Actualizar posiblesRespuestas directamente en el objeto correspondiente
+                        preguntasTipo2.forEach(pregunta => {
+                            if (pregunta.preguntaID === idPreguntaActual) {
+                                pregunta.posiblesRespuestas.push([imgElement, btnElement]);
+                            }
+                        });
+
+                        // Imprimir mensaje con los elementos conectados
+                        console.log(`Conexión establecida entre ${firstElement.id} y ${element.id}`);
+                    } else {
+                        // Si ya hay 2 líneas, eliminar la más antigua y agregar la nueva
+                        svgContainer.removeChild(svgContainer.firstChild);
+
+                        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                        line.setAttribute("x1", firstElement.x);
+                        line.setAttribute("y1", firstElement.y);
+                        line.setAttribute("x2", x);
+                        line.setAttribute("y2", y);
+                        line.setAttribute("stroke", "#b3ea51");
+                        line.setAttribute("stroke-width", "2");
+
+                        svgContainer.appendChild(line);
+
+                        let imgElement = firstElement.type === 'img' ? firstElement.id : element.id;
+                        let btnElement = firstElement.type === 'button' ? firstElement.id : element.id;
+
+                        // Reemplazar la respuesta más antigua
+                        preguntasTipo2.forEach(pregunta => {
+                            if (pregunta.preguntaID === idPreguntaActual) {
+                                pregunta.posiblesRespuestas.shift();
+                                pregunta.posiblesRespuestas.push([imgElement, btnElement]);
+                            }
+                        });
+
+                        // Imprimir mensaje con los elementos conectados
+                        console.log(`Conexión establecida entre ${firstElement.id} y ${element.id}`);
+                    }
+                } else {
+                    console.log("No se puede conectar elementos del mismo tipo");
+                }
+
+                // Reiniciar el primer elemento para futuras selecciones
+                firstElement = null;
+            }
+        });
+    });
 }
-
-// Ordena los puntajes en orden descendente
-function sortScores(scores) {
-    return scores.sort((a, b) => b.points - a.points);
-}
-
-// Guarda el puntaje en localStorage
-function saveScoreToLocalStorage(newScore) {
-    let scores = JSON.parse(localStorage.getItem('scoreboard')) || [];
-    scores.push(newScore);
-    localStorage.setItem('scoreboard', JSON.stringify(scores));
-}
-
-// Actualiza la tabla de puntuaciones en la UI
-function updateScoreboardUI(score) {
-    const tableBody = document.querySelector(".scoreboard-table tbody");
-    const newRow = tableBody.insertRow();
-
-        const playerCell = newRow.insertCell(0);
-        const scoreCell = newRow.insertCell(1);
-
-        playerCell.textContent = score.name;
-        scoreCell.textContent = score.points  + " PT" ;
-}
-
-// Carga las puntuaciones desde localStorage al iniciar la página
-function loadScoresFromLocalStorage() {
-    scores = JSON.parse(localStorage.getItem('scoreboard')) || [];
-    const tableBody = document.querySelector(".scoreboard-table tbody");
-    tableBody.innerHTML = ""; // Limpiar la tabla existente
-    scores = sortScores(scores);
-    scores.forEach(score => updateScoreboardUI(score));
-}
-
-// Llama a la función para cargar las puntuaciones cuando se carga la página
-window.onload = loadScoresFromLocalStorage;
-
-
-
