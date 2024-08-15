@@ -25,19 +25,20 @@
     <div class="contenedor-juego">
         <div class="pantalla-juego">
             <header class="barra-superior">
-                <img src="/img/827842-1.png" alt="Logo juego Organic Odyssey" style="width: 61px; height: 57px;">
-                <span>Organic Odyssey</span>
+                <img src="/img/827842-1.png" alt="Logo del juego Organic Odyssey" style="width: 61px; height: 57px;"
+                    tabindex="1">
+                <span tabindex="2">Organic Odyssey</span>
             </header>
 
             <div class="volume-controls" onmouseover="playSound('hover-sound')">
                 <audio id="background-sound" src="sound/fondo.mp3" autoplay loop></audio>
-                <button class="volume-button" onclick="changeVolume(-0.3)" alt="bajar volumen">
+                <button class="volume-button" onclick="changeVolume(-0.3)" alt="Bajar volumen" tabindex="3">
                     <i class="fas fa-volume-down"></i>
-                </button onmouseover="playSound('hover-sound')">
-                <button class="volume-button" onclick="changeVolume(0.1)" alt="subir volumen">
+                </button>
+                <button class="volume-button" onclick="changeVolume(0.1)" alt="Subir volumen" tabindex="4">
                     <i class="fas fa-volume-up"></i>
-                </button onmouseover="playSound('hover-sound')">
-                <button class="volume-button" onclick="changeVolume(0.0)" alt="quitar volumen">
+                </button>
+                <button class="volume-button" onclick="changeVolume(0.0)" alt="Quitar volumen" tabindex="5">
                     <i class="fa-solid fa-volume-xmark"></i>
                 </button>
                 <br><br>
@@ -45,22 +46,25 @@
 
             <section class="contenido">
                 <div class="opciones animacion-imagen">
-                    <img src="/img/quimica-3-1.png" alt="mascota del juego" style="width: 315px; height: 273px;">
+                    <img src="/img/quimica-3-1.png" alt="Mascota del juego" style="width: 315px; height: 273px;"
+                        tabindex="6">
                 </div>
                 <div class="botones" style="margin-bottom: 15px;">
-                    <button class="btn-Accion" onmouseover="playSound('hover-sound')" onclick="window.location.href='niveles.html'">
+                    <button class="btn-Accion" onmouseover="playSound('hover-sound')"
+                        onclick="window.location.href='niveles.html'" tabindex="7">
                         Nuevo Juego
                         <span></span><span></span><span></span><span></span>
                     </button>
                 </div>
 
                 <div class="botones">
-                    <button class="btn-Accion" style="margin-bottom: 15px;" onmouseover="playSound('hover-sound')" onclick="window.location.href='https://youtube.com/playlist?list=PLjNwdFTuvuiYVu9Ih5ys-GF-Zvag2wBD3&si=hjZFFmp-e-oV14-d'">
+                    <button class="btn-Accion" style="margin-bottom: 15px;" onmouseover="playSound('hover-sound')"
+                        onclick="window.location.href='https://youtube.com/playlist?list=PLjNwdFTuvuiYVu9Ih5ys-GF-Zvag2wBD3&si=hjZFFmp-e-oV14-d'"
+                        tabindex="8">
                         Revisar Conceptos
                         <span></span><span></span><span></span><span></span>
                     </button>
                 </div>
-
 
                 <!-- Audio element -->
                 <audio id="hover-sound" src="sound/click.mp3"></audio>
@@ -69,12 +73,11 @@
             </section>
 
             <div>
-                <button alt="boton de ayuda" onmouseover="playSound('hover-sound')"
+                <button alt="Botón de ayuda" onmouseover="playSound('hover-sound')"
                     style="padding-left: 20px; align-items: end;" class="hoveer button-help"
-                    onclick="window.location.href='ayudaJuego.html'">
+                    onclick="window.location.href='ayudaJuego.html'" tabindex="9">
                     <i class="fa-regular fa-circle-question"></i>
                 </button>
-
             </div>
 
         </div>
@@ -85,7 +88,7 @@
     <script>
         playSound('background-sound');
 
-        window.onload = function() {
+        window.onload = function () {
             const storedVidas = sessionStorage.setItem('vidas', 3);
             updateProgressBar();
         }

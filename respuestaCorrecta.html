@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,9 @@
     <link rel="stylesheet" href="styles/respuestaCorrecta.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
     <style>
         body {
             font-family: "DM Sans", sans-serif;
@@ -17,26 +20,32 @@
         }
     </style>
 </head>
+
 <body>
     <div class="contenedor-juego">
         <div class="pantalla-juego">
             <header class="barra-superior">
                 <div class="nivel-info">
-                    <span class="nivel-label">NIVEL 1</span>
+                    <span class="nivel-label" tabindex="1">NIVEL 1</span>
                 </div>
             </header>
             <main class="game-content">
                 <div class="instruction-box">
-                    <img src="/img/question-etanol-pentanol.png" alt="Imagen de la pregunta fallida" class="question-img">
+                    <img src="/img/question-etanol-pentanol.png" alt="Imagen de la pregunta fallida"
+                        class="question-img" tabindex="2">
                 </div>
                 <div class="answer">
-                    <p>El primer compuesto es el etanol que se forma con una cadena de dos carbonos unida a un grupo hidroxilo OH. El segundo compuesto es el pentanol, que se forma con una cadena de cinco carbonos unida a un grupo hidroxilo OH.  </p>
+                    <p tabindex="3">El primer compuesto es el etanol que se forma con una cadena de dos carbonos unida a
+                        un grupo hidroxilo OH. El segundo compuesto es el pentanol, que se forma con una cadena de cinco
+                        carbonos unida a un grupo hidroxilo OH.</p>
                 </div>
-                <img src="/img/quimica-char-died.png" alt="Game character" class="game-character-died">
+                <img src="/img/quimica-char-died.png" alt="Personaje del juego" class="game-character-died"
+                    tabindex="4">
             </main>
             <div class="bottom-buttons">
-                <img src="/img/help-1.svg" alt="icono de ayuda" onclick="window.location.href='ayudaJuego.html'" width="78px" height="79px" style="padding-left: 20px; cursor: pointer;">
-                <button class="next-btn" id="next-btn" alt="Botón siguiente">Siguiente</button>
+                <img src="/img/help-1.svg" alt="Icono de ayuda" onclick="window.location.href='ayudaJuego.html'"
+                    width="78px" height="79px" style="padding-left: 20px; cursor: pointer;" tabindex="5">
+                <button class="next-btn" id="next-btn" alt="Botón siguiente" tabindex="6">Siguiente</button>
             </div>
         </div>
     </div>
@@ -48,12 +57,12 @@
 
             const pagina = getQueryParam('pagina');
             const button = document.getElementById('next-btn');
-            
+
             if (pagina) {
-                button.onclick = function() {
-                    if(pagina.includes('puntuaciones')){
+                button.onclick = function () {
+                    if (pagina.includes('puntuaciones')) {
                         window.location.href = pagina + '.html?newPlayer=true';
-                    }else{
+                    } else {
                         window.location.href = pagina + '.html';
                     }
                 };
@@ -70,11 +79,12 @@
             // Inicializar puntos y numeroPreguntas como enteros
             let puntos = 0;
             let numeroPreguntas = 0;
-        
+
             // Guardar los valores en localStorage
             localStorage.setItem('puntos', puntos.toString());
             localStorage.setItem('numeroPreguntas', numeroPreguntas.toString());
         }
     </script>
 </body>
+
 </html>

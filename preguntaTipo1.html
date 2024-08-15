@@ -23,45 +23,50 @@
 </head>
 
 <body>
-    <div class="contenedor-juego">
+    <div class="contenedor-juego" tabindex="1">
         <div class="pantalla-juego">
-            <header class="barra-superior">
+            <header class="barra-superior" tabindex="2">
                 <div class="nivel-info">
-                    <span class="nivel-label">NIVEL 1</span>
-                    <div class="progress-bar">
+                    <span class="nivel-label" tabindex="3">NIVEL 1</span>
+                    <div class="progress-bar" tabindex="4">
                         <div id="progress" class="progress"></div>
-                    </div>                    
+                    </div>
                 </div>
-                <div class="game-controls">
-                    <img src="/img/pause.png" alt="Pausa" class="control-icon">
-                    <img src="/img/time.png" alt="Tiempo" class="control-icon">
-                    <span class="timer">3:00</span>
+                <div class="game-controls" tabindex="5">
+                    <img src="/img/pause.png" alt="Pausa" class="control-icon" tabindex="6">
+                    <img src="/img/time.png" alt="Tiempo restante" class="control-icon" tabindex="7">
+                    <span class="timer" tabindex="8">3:00</span>
                 </div>
             </header>
-            <div class="lives">
-                <img src="/img/heart-full.png" alt="Life" class="life-icon">
-                <img src="/img/heart-full.png" alt="Life" class="life-icon">
-                <img src="/img/heart-full.png" alt="Life" class="life-icon">
+            <div class="lives" tabindex="9">
+                <img src="/img/heart-full.png" alt="Vida" class="life-icon">
+                <img src="/img/heart-full.png" alt="Vida" class="life-icon">
+                <img src="/img/heart-full.png" alt="Vida" class="life-icon">
             </div>
-            <main class="game-content">
-                <div class="instruction-box">
-                    <p>Completa los espacios en blanco con el símbolo</p>
+            <main class="game-content" tabindex="10">
+                <div class="instruction-box" tabindex="11">
+                    <p aria-label="Instrucción: Completa los espacios en blanco con el símbolo correspondiente">Completa
+                        los espacios en blanco con el símbolo</p>
                 </div>
-                <div class="chemical-formula">
-                    <img src="/img/compuesto-pentanol.png" alt="formula química de la acetona" class="formula-img">
-                    <input type="text" class="formula-input op1">
+                <div class="chemical-formula" tabindex="12">
+                    <img src="/img/compuesto-pentanol.png"
+                        alt="Imagen de la estructura química del pentanol incompleta C 5 H 11 O" class="formula-img"
+                        tabindex="13">
+                    <input type="text" class="formula-input op1" tabindex="14"
+                        aria-label="Espacio en blanco para completar">
                     <p class="chemical-name">PENTANOL</p>
                 </div>
             </main>
-            <img src="/img/quimica-char-rope.png" alt="Imagen de la mascota del juego" class="game-character-tipo1">
-            <div class="bottom-buttons">
-                <button alt="boton de ayuda" onmouseover="playSound('hover-sound')"
+            <img src="/img/quimica-char-rope.png" alt="Imagen de la mascota del juego" class="game-character-tipo1"
+                tabindex="15">
+            <div class="bottom-buttons" tabindex="16">
+                <button aria-label="Botón de ayuda" onmouseover="playSound('hover-sound')"
                     style="padding-left: 20px; align-items: end; margin-bottom: 25px !important;"
                     class="hoveer button-help" onclick="window.location.href='ayudaJuego.html'">
                     <i class="fa-regular fa-circle-question"></i>
                 </button>
                 <div class="botones" style="margin-right: 20px;">
-                    <button class="btn-Accion" onmouseover="playSound('hover-sound')" alt="Botón siguiente"
+                    <button class="btn-Accion" aria-label="Botón siguiente" onmouseover="playSound('hover-sound')"
                         onclick="redirigir('preguntaTipo1')">
                         Siguiente
                         <span></span><span></span><span></span><span></span>
@@ -77,7 +82,7 @@
     <script src="/js/progress.js"></script>
     <script>
         window.onload = async function () {
-            await cargarTemplates()
+            await cargarTemplates();
             cargarPreguntaAleatoriaTipo1();
             updateProgressBar();
             const storedVidas = sessionStorage.getItem('vidas');
@@ -93,7 +98,7 @@
             // Inicializar puntos y numeroPreguntas como enteros
             let puntos = 0;
             let numeroPreguntas = 0;
-        
+
             // Guardar los valores en localStorage
             localStorage.setItem('puntos', puntos.toString());
             localStorage.setItem('numeroPreguntas', numeroPreguntas.toString());

@@ -1,4 +1,3 @@
-
 <!-- Dentro de este html se guardan las preguntas que se mostraran en los html de preguntaTipoX.html -->
 <!-- En cada template se escribe lo que va dentro del <main class="game-content"> -->
 
@@ -8,9 +7,13 @@
         <p>Completa los espacios en blanco con el símbolo</p>
     </div>
     <div class="chemical-formula">
-        <img src="/img/compuesto-acetona.png" alt="formula química de la acetona" class="formula-img">
-        <input type="text" class="formula-input op1">
-        <input type="text" class="formula-input op2">
+        <img src="/img/compuesto-acetona.png"
+            alt="Imagen de la estructura química de la acetona incompleta H3C C doble enlace unido a incognita uno y unido con un enlace a incognita dos tres"
+            class="formula-img">
+        <input type="text" class="formula-input op1" tabindex="0"
+            alt="especio para completar, aquí va la incognita uno">
+        <input type="text" class="formula-input op2" tabindex="0"
+            alt="especio para completar, aquí va la incognita dos">
         <p class="chemical-name">PROPANONA (ACETONA)</p>
     </div>
 </template>
@@ -20,9 +23,13 @@
         <p>Completa los espacios en blanco con el símbolo</p>
     </div>
     <div class="chemical-formula">
-        <img src="/img/compuesto-etanol.png" alt="formula química de la acetona" class="formula-img">
-        <input type="text" class="formula-input op1">
-        <input type="text" class="formula-input op2">
+        <img src="/img/compuesto-etanol.png"
+            alt="Imagen de la estructura química del etanol incompleta C H 3 C H incognita uno con enlace a espacio  incognita dos y H "
+            class="formula-img">
+        <input type="text" class="formula-input op1" tabindex="0"
+            alt="especio para completar, aquí va la incognita uno">
+        <input type="text" class="formula-input op2" tabindex="0"
+            alt="especio para completar, aquí va la incognita dos">
         <p class="chemical-name">ETANOL</p>
     </div>
 </template>
@@ -32,12 +39,14 @@
         <p>Completa los espacios en blanco con el símbolo</p>
     </div>
     <div class="chemical-formula">
-        <img src="/img/compuesto-pentanol.png" alt="formula química de la acetona" class="formula-img">
-        <input type="text" class="formula-input op1">
+        <img src="/img/compuesto-pentanol.png"
+            alt="Imagen de la estructura química del pentanol incompleta C 5 H once espacio incognita"
+            class="formula-img">
+        <input type="text" class="formula-input op1" tabindex="0"
+            alt="especio para completar, aquí va la incognita uno">
         <p class="chemical-name">PENTANOL</p>
     </div>
 </template>
-
 
 
 
@@ -48,8 +57,9 @@
     </div>
     <div class="selection-game">
         <div class="chemical-formula-tipo2">
-            <img src="/img/compuesto-etanol.png"  id="img-etanol" alt="Formula química 1" class="formula-image element">
-            <img src="/img/compuesto-pentanol.png" id="img-pentanol" alt="Formula química 2" class="formula-image element">
+            <img src="/img/compuesto-etanol.png" id="img-etanol" alt="Formula química 1" class="formula-image element">
+            <img src="/img/compuesto-pentanol.png" id="img-pentanol" alt="Formula química 2"
+                class="formula-image element">
         </div>
         <div class="options-container">
             <button class="option-btn element" id="btn-metano">Metano</button>
@@ -65,8 +75,10 @@
     </div>
     <div class="selection-game">
         <div class="chemical-formula-tipo2">
-            <img src="/img/compuesto-acetona.png" id="img-acetona" alt="Formula química 1" class="formula-image element">
-            <img src="/img/compuesto-pentanol.png" id="img-pentanol" alt="Formula química 2" class="formula-image element">
+            <img src="/img/compuesto-acetona.png" id="img-acetona" alt="Formula química 1"
+                class="formula-image element">
+            <img src="/img/compuesto-pentanol.png" id="img-pentanol" alt="Formula química 2"
+                class="formula-image element">
         </div>
         <div class="options-container">
             <button class="option-btn element" id="btn-acetona">Acetona</button>
@@ -82,15 +94,17 @@
     </div>
     <div class="selection-game">
         <div class="chemical-formula-tipo2">
-            
-            <div class="element" id="img-etanol"><img src="/img/compuesto-etanol.png"  alt="Formula química 1" class="formula-image"></div>
-            <div class="element" id="img-acetona"><img src="/img/compuesto-acetona.png"alt="Formula química 2" class="formula-image"></div>
-            
+
+            <div class="element" id="img-etanol"><img src="/img/compuesto-etanol.png" alt="Formula química 1"
+                    class="formula-image"></div>
+            <div class="element" id="img-acetona"><img src="/img/compuesto-acetona.png" alt="Formula química 2"
+                    class="formula-image"></div>
+
         </div>
         <div class="options-container">
-            <button class="option-btn element" id="btn-pentanol" >Pentanol</button>
-            <button class="option-btn element" id="btn-acetona" >Acetona</button>
-            <button class="option-btn element" id="btn-etanol"  >Etanol</button>
+            <button class="option-btn element" id="btn-pentanol">Pentanol</button>
+            <button class="option-btn element" id="btn-acetona">Acetona</button>
+            <button class="option-btn element" id="btn-etanol">Etanol</button>
         </div>
     </div>
 </template>
@@ -137,7 +151,9 @@
         <img src="/img/question-etanol-pentanol.png" alt="Imagen de la pregunta fallida" class="question-img">
     </div>
     <div class="answer">
-        <p>El primer compuesto es el etanol que se forma con una cadena de dos carbonos unida a un grupo hidroxilo OH. El segundo compuesto es el pentanol, que se forma con una cadena de cinco carbonos unida a un grupo hidroxilo OH.  </p>
+        <p>El primer compuesto es el etanol que se forma con una cadena de dos carbonos unida a un grupo hidroxilo OH.
+            El segundo compuesto es el pentanol, que se forma con una cadena de cinco carbonos unida a un grupo
+            hidroxilo OH. </p>
     </div>
     <img src="/img/quimica-char-died.png" alt="Game character" class="game-character-died">
 </template>
@@ -147,7 +163,9 @@
         <img src="/img/question-acetona-pentanol.png" alt="Imagen de la pregunta fallida" class="question-img">
     </div>
     <div class="answer">
-        <p>El primer compuesto es la acetona, que se forma con 2 radicales de metilo y un oxígeno con doble enlace. El segundo compuesto es el pentanol, que se forma con una cadena de cinco carbonos unida a un grupo hidroxilo OH.</p>
+        <p>El primer compuesto es la acetona, que se forma con 2 radicales de metilo y un oxígeno con doble enlace. El
+            segundo compuesto es el pentanol, que se forma con una cadena de cinco carbonos unida a un grupo hidroxilo
+            OH.</p>
     </div>
     <img src="/img/quimica-char-died.png" alt="Game character" class="game-character-died">
 </template>
@@ -157,7 +175,9 @@
         <img src="/img/question-etanol-acetona.png" alt="Imagen de la pregunta fallida" class="question-img">
     </div>
     <div class="answer">
-        <p>El primer compuesto es el etanol que se forma con una cadena de dos carbonos unida a un grupo hidroxilo OH. El segundo compuesto es la acetona, que se forma con 2 radicales de metilo y un oxígeno con doble enlace.  </p>
+        <p>El primer compuesto es el etanol que se forma con una cadena de dos carbonos unida a un grupo hidroxilo OH.
+            El segundo compuesto es la acetona, que se forma con 2 radicales de metilo y un oxígeno con doble enlace.
+        </p>
     </div>
     <img src="/img/quimica-char-died.png" alt="Game character" class="game-character-died">
 </template>

@@ -19,47 +19,41 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 </head>
 
 <body>
-    <div class="contenedor-juego">
+    <div class="contenedor-juego" tabindex="1">
         <div class="pantalla-juego">
-            <header class="barra-superior">
-                <img src="/img/827842-1.png" alt="Logo juego Organic Odyssey" style="width: 61px; height: 57px;">
+            <header class="barra-superior" tabindex="2">
+                <img src="/img/827842-1.png" alt="Organic Odyssey game logo" style="width: 61px; height: 57px;">
                 <span>Organic Odyssey</span>
             </header>
-            <section class="contenido">
+            <section class="contenido" tabindex="3">
                 <div class="SeccionAyuda">
                     <div class="marco-ayuda">
-                        
                         <div class="text-wrapper-2">Ayuda del Juego</div>
                         <span class="text-wrapper">¿Cómo Jugar?<br /></span>
                         <span class="span">En este juego, tu objetivo es pasar por distintos niveles siguiendo las
-                            instrucciones de cada
-                            pregunta. Cada nivel presentará un desafío diferente y tendrás que responder correctamente
-                            para
-                            avanzar al siguiente nivel. <br> <br></span>
+                            instrucciones de cada pregunta. Cada nivel presentará un desafío diferente y tendrás que
+                            responder correctamente para avanzar al siguiente nivel. <br><br></span>
                         <span class="text-wrapper">Instrucciones:</span>
                         <span class="span">
                             <ol>
-                                <li>Leer las Preguntas: Cada nivel tiene una pregunta específica. Asegúrate de
-                                    leerla cuidadosamente.</li>
-                                <li>Responder: Proporciona la respuesta correcta según las opciones o el
-                                    formato requerido.
-                                </li>
-                                <li>Avanzar: Si respondes correctamente, pasarás al siguiente nivel con una
-                                    nueva pregunta.
-                                </li>
+                                <li>Leer las Preguntas: Cada nivel tiene una pregunta específica. Asegúrate de leerla
+                                    cuidadosamente.</li>
+                                <li>Responder: Proporciona la respuesta correcta según las opciones o el formato
+                                    requerido.</li>
+                                <li>Avanzar: Si respondes correctamente, pasarás al siguiente nivel con una nueva
+                                    pregunta.</li>
                             </ol>
                         </span>
                         <span class="text-wrapper">Tabla de Puntuaciones<br /></span>
                         <span class="span">Al final del juego, se mostrará una tabla de puntuaciones con los siguientes
                             detalles:
-                        <ul>
-                            <li>Nombre del Jugador: El nombre que ingresaste al inicio del juego.</li>
-                            <li>Puntuación: La cantidad de puntos acumulados según tus respuestas correctas.</li>
-                        </ul>
+                            <ul>
+                                <li>Nombre del Jugador: El nombre que ingresaste al inicio del juego.</li>
+                                <li>Puntuación: La cantidad de puntos acumulados según tus respuestas correctas.</li>
+                            </ul>
                         </span>
                         <span class="text-wrapper">Consejos:</span>
                         <span class="span">
@@ -70,29 +64,29 @@
                             </ul>
                         </span>
                     </div>
-                    <div style="left: 1000px !important;" class="animacion-imagen">
-                        <img src="img/quimica-6-1.png" alt="Imagen de mascota con tabla quimica" style="left: 1000px !important;" >
+                    <div class="animacion-imagen" style="left: 1000px !important;">
+                        <img src="img/quimica-6-1.png" alt="Mascot with periodic table"
+                            style="left: 1000px !important;">
                     </div>
-                    
                 </div>
-                <div style="display: flex; gap: 10px; justify-content: end; margin-top: 40px;">
-                    
+                <div class="botones-container"
+                    style="display: flex; gap: 10px; justify-content: end; margin-top: 40px;">
                     <div class="botones">
-                        <button class="btn-Accion" onmouseover="playSound('hover-sound')" onclick="history.back()">
+                        <button class="btn-Accion" aria-label="Regresar" onmouseover="playSound('hover-sound')"
+                            onclick="history.back()">
                             Regresar
-                          <span></span><span></span><span></span><span></span>
+                            <span></span><span></span><span></span><span></span>
                         </button>
                     </div>
-    
                     <div class="botones">
-                        <button class="btn-Accion" onmouseover="playSound('hover-sound')" onclick="redirigir('elementosJuego')">
+                        <button class="btn-Accion" aria-label="Siguiente" onmouseover="playSound('hover-sound')"
+                            onclick="redirigir('elementosJuego')">
                             Siguiente
-                          <span></span><span></span><span></span><span></span>
+                            <span></span><span></span><span></span><span></span>
                         </button>
                     </div>
-                    <audio id="hover-sound" src="sound/click.mp3"></audio>
-
                 </div>
+                <audio id="hover-sound" src="sound/click.mp3"></audio>
             </section>
         </div>
     </div>

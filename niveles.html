@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
     <style>
         body {
             font-family: "DM Sans", sans-serif;
@@ -18,43 +21,53 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 </head>
+
 <body>
     <div class="contenedor-juego">
         <audio id="hover-sound" src="sound/click.mp3"></audio>
 
         <div class="pantalla-juego">
             <header class="barra-superior">
-                <button onmouseover="playSound('hover-sound')" class="btn-back" onclick="history.back()"><img src="/img/back.png" alt="Volver"></button>
-                <h1>NIVELES</h1>
-                <button onmouseover="playSound('hover-sound')" class="btn-home" onclick="redirigir('index')"><img src="/img/home.png" alt="Inicio"></button>
+                <button onmouseover="playSound('hover-sound')" class="btn-back" onclick="history.back()" tabindex="1">
+                    <img src="/img/back.png" alt="Volver" tabindex="-1">
+                </button>
+                <h1 tabindex="2">NIVELES</h1>
+                <button onmouseover="playSound('hover-sound')" class="btn-home" onclick="redirigir('index')"
+                    tabindex="3">
+                    <img src="/img/home.png" alt="Inicio" tabindex="-1">
+                </button>
             </header>
             <section class="contenido-niveles">
                 <div class="grid-niveles">
-                    <button onmouseover="playSound('hover-sound')" class="btn-nivel" alt="Nivel 1 desbloqueado" tabindex="0" onclick="window.location.href='preguntaTipo1.html'">
-                        <img src="/img/unlocked.jpg">
+                    <button onmouseover="playSound('hover-sound')" class="btn-nivel" alt="Nivel 1 desbloqueado"
+                        tabindex="4" onclick="window.location.href='preguntaTipo1.html'">
+                        <img src="/img/unlocked.jpg" alt="Nivel 1 desbloqueado">
                         <span>NIVEL 1</span>
                     </button>
-                    <button onmouseover="playSound('hover-sound')" class="btn-nivel" alt="Nivel 2 bloqueado" tabindex="0">
-                        <img src="/img/locked.jpg">
+                    <button onmouseover="playSound('hover-sound')" class="btn-nivel" alt="Nivel 2 bloqueado"
+                        tabindex="5">
+                        <img src="/img/locked.jpg" alt="Nivel 2 bloqueado">
                         <span>NIVEL 2</span>
                     </button>
-                    <button onmouseover="playSound('hover-sound')" class="btn-nivel" alt="Nivel 3 bloqueado" tabindex="0">
-                        <img src="/img/locked.jpg">
+                    <button onmouseover="playSound('hover-sound')" class="btn-nivel" alt="Nivel 3 bloqueado"
+                        tabindex="6">
+                        <img src="/img/locked.jpg" alt="Nivel 3 bloqueado">
                         <span>NIVEL 3</span>
                     </button>
-                    <button onmouseover="playSound('hover-sound')" class="btn-nivel" alt="Nivel 4 bloqueado" tabindex="0">
-                        <img src="/img/locked.jpg">
+                    <button onmouseover="playSound('hover-sound')" class="btn-nivel" alt="Nivel 4 bloqueado"
+                        tabindex="7">
+                        <img src="/img/locked.jpg" alt="Nivel 4 bloqueado">
                         <span>NIVEL 4</span>
                     </button>
                 </div>
             </section>
             <div>
-                <button onmouseover="playSound('hover-sound')" style="padding-left: 20px; align-items: end;" class="hoveer button-help" onclick="window.location.href='ayudaJuego.html'" >
-                    <i class="fa-regular fa-circle-question"></i>
+                <button onmouseover="playSound('hover-sound')" style="padding-left: 20px; align-items: end;"
+                    class="hoveer button-help" onclick="window.location.href='ayudaJuego.html'" tabindex="8">
+                    <i class="fa-regular fa-circle-question" aria-hidden="true"></i>
+                    <span class="sr-only">Ayuda</span>
                 </button>
-                
             </div>
         </div>
     </div>
@@ -62,10 +75,11 @@
     <script src="/js/sound.js"></script>
     <script src="/js/volume-controls.js"></script>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             const storedVidas = sessionStorage.setItem('vidas', 3);
             updateProgressBar();
         }
     </script>
 </body>
+
 </html>
