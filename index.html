@@ -85,12 +85,14 @@
     <script src="js/scripts.js"></script>
     <script src="js/sound.js"></script>
     <script src="js/volume-controls.js"></script>
+    <script src="js/progress.js"></script>
+
     <script>
         playSound('background-sound');
 
         window.onload = function () {
             const storedVidas = sessionStorage.setItem('vidas', 3);
-            updateProgressBar();
+            resetProgress();
             resetScore();
         }
     </script>
