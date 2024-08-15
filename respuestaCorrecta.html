@@ -49,10 +49,31 @@
             </main>
             <div class="bottom-buttons">
                 <img src="/img/help-1.svg" alt="icono de ayuda" onclick="redirigir('ayudaJuego')" width="78px" height="79px" style="padding-left: 20px; cursor: pointer;">
-                <button class="next-btn" alt="Botón siguiente">Siguiente</button>
+                <button class="next-btn" id="next-btn" alt="Botón siguiente">Siguiente</button>
             </div>
         </div>
     </div>
     <script src="/js/scripts.js"></script>
+    <script>
+        window.onload = async function () {
+            await cargarTemplates();
+            mostrarRespuestaCorrecta();
+
+            const pagina = getQueryParam('pagina');
+            const button = document.getElementById('next-btn');
+            
+            if (pagina) {
+                button.onclick = function() {
+                    window.location.href = pagina + '.html';
+                };
+            }
+        }
+
+        // Función para obtener los parámetros de la URL
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+    </script>
 </body>
 </html>

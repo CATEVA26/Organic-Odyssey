@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="pause-content">
             <h2>Pausa</h2>
             <button class="pause-btn resume-btn">Reanudar</button>
-            <button class="pause-btn levels-btn" onclick="redirigir('niveles')">Niveles</button>
-            <button class="pause-btn exit-btn" onclick="redirigir('index')">Salir</button>
+            <button class="pause-btn levels-btn" onclick="window.location.href='niveles.html'">Niveles</button>
+            <button class="pause-btn exit-btn" onclick="window.location.href='index.html'">Salir</button>
         </div>
     `;
     document.body.appendChild(pauseMenu);
@@ -76,8 +76,36 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Funcion para cambiar de pantalla
 async function redirigir(pagina) {
-    comprobarPregunta()
-    window.location.href = pagina + '.html';
+    respuesta = comprobarPregunta()
+
+    if (pagina.includes("Tipo1")) {
+        // Obtener el contador del almacenamiento local, si existe
+        let numeroPreguntas = parseInt(localStorage.getItem('numeroPreguntas'), 10);
+        
+        // Si no existe, inicializar en 0
+        if (isNaN(numeroPreguntas)) {
+            numeroPreguntas = 0;
+        }
+        
+        // Incrementar el contador
+        numeroPreguntas++;
+        // Guardar el nuevo valor en el almacenamiento local
+        localStorage.setItem('numeroPreguntas', numeroPreguntas);
+
+        // Cambiar 'Tipo1' por 'Tipo2' si el número es par
+        if (numeroPreguntas % 2 === 0) {
+            pagina = pagina.replace("Tipo1", "Tipo2");
+        } else if (pagina.includes("Tipo2")){
+            pagina = "puntuaciones?newPlayer=true";
+        }
+    }
+
+    if(respuesta){
+        window.location.href = pagina + '.html';
+    }else{
+        window.location.href = 'respuestaCorrecta.html?id=' + idPreguntaActual + '&pagina=' + pagina;
+        // AQUI COLOCAR EL METODO PARA QUITAR VIDAS
+    }
 }
 
 let idPreguntaActual = ""//viene en forma 'pregunta1-Tipo2'
@@ -85,30 +113,27 @@ let contadorRespuestasCorrectas = 0
 let posibleRespuesta1
 let posibleRespuesta2
 let respuestasCorrectas
+
 function comprobarPregunta() {
-    //Primero buscar la pregunta cargada y buscar el template
-    alert(idPreguntaActual)
-    console.log("comprobandoRespuesta")
+    let respuestaCorrecta = false;
     const plantilla = templatesCache[idPreguntaActual];
-    let preguntaEncontrada
+    let preguntaEncontrada;
+
     if (idPreguntaActual.includes("Tipo2", 0)) {
-        preguntaEncontrada = preguntasTipo2.find(p => p.preguntaID === idPreguntaActual)
-        const verificarRespuestaTipo2 = (preguntaEncontrada) => {
-            let numPregunta = parseInt(String(preguntaEncontrada.preguntaID).charAt(8));
-            compararRespuestasTipo2(numPregunta, preguntaEncontrada)
+        preguntaEncontrada = preguntasTipo2.find(p => p.preguntaID === idPreguntaActual);
+        if (preguntaEncontrada) {
+            respuestaCorrecta = compararRespuestasTipo2(parseInt(idPreguntaActual.charAt(8)), preguntaEncontrada);
         }
-        verificarRespuestaTipo2(preguntaEncontrada)
-        alert(contadorRespuestasCorrectas)
     } else if (idPreguntaActual.includes("Tipo1", 0)) {
-        preguntaEncontrada = preguntasTipo1.find(p => p.preguntaID === idPreguntaActual)
-        const verificarRespuestaTipo1 = (preguntaEncontrada) => {
-            let numPregunta = parseInt(String(preguntaEncontrada.preguntaID).charAt(8));
-            compararRespuestasTipo1(numPregunta, preguntaEncontrada);
+        preguntaEncontrada = preguntasTipo1.find(p => p.preguntaID === idPreguntaActual);
+        if (preguntaEncontrada) {
+            respuestaCorrecta = compararRespuestasTipo1(parseInt(idPreguntaActual.charAt(8)), preguntaEncontrada);
         }
-        verificarRespuestaTipo1(preguntaEncontrada)
-        alert(contadorRespuestasCorrectas)
     }
+    return respuestaCorrecta;
 }
+
+
 
 function compararRespuestasTipo2(numPregunta, preguntaEncontrada) {
     const respuestasCorrectas = {
@@ -130,14 +155,14 @@ function compararRespuestasTipo2(numPregunta, preguntaEncontrada) {
     if (todasCorrectas) {
         contadorRespuestasCorrectas += 100;
         alert("La respuesta es correcta");
+        return true
     } else {
         alert("La respuesta es incorrecta");
-        // Aquí puedes manejar la lógica de quitar vidas o cualquier otra acción necesaria
+        return false
     }
 }
 
 function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
-    alert("comparando..")
     switch (numPregunta) {
         case 1: //PROPANONA
             posibleRespuesta1 = document.querySelector('.formula-input.op1'); //O
@@ -146,12 +171,14 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
             posibleRespuesta2 = posibleRespuesta2.value.toUpperCase();
             respuestasCorrectas = preguntaEncontrada.respuestas;
 
-            if (posibleRespuesta1 == respuetasCorrectas[0] && posibleRespuesta2 == respuetasCorrectas[1]) {
+            if (posibleRespuesta1 == respuestasCorrectas[0] && posibleRespuesta2 == respuestasCorrectas[1]) {
                 contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100;
                 alert("La respuesta Es correcta");
+                return true
             } else {
                 alert("La respuesta Es incorrecta");
-            } //TODO: Brit aca es la parte de las vidas en el else
+                return false
+            } 
 
             break;
         case 2: //ETANOL
@@ -164,9 +191,11 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
             if (posibleRespuesta1 == respuestasCorrectas[0] && posibleRespuesta2 == respuestasCorrectas[1]) {
                 contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100;
                 alert("La respuesta Es correcta");
+                return true
             } else {
                 alert("La respuesta Es incorrecta");
-            } //TODO: Brit aca es la parte de las vidas en el else
+                return false
+            } 
 
             break;
         case 3: //PENTANOL
@@ -177,9 +206,11 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
             if (posibleRespuesta1 == respuestasCorrectas[0]) {
                 contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100;
                 alert("La respuesta Es correcta");
+                return true
             } else {
                 alert("La respuesta Es incorrecta");
-            } //TODO: Brit aca es la parte de las vidas en el else
+                return false
+            }
 
             break;
     }
@@ -385,4 +416,71 @@ function dibujarLinea() {
             }
         });
     });
+}
+
+
+// Agregar jugador a la tabla de puntuacion
+function addPlayerScore() {
+    const playerName = prompt("Ingrese el nombre del jugador:");
+
+    if (playerName) {
+        const newScore = { name: playerName, points: contadorRespuestasCorrectas};
+        saveScoreToLocalStorage(newScore);
+        loadScoresFromLocalStorage();
+    } else {
+        alert("El nombre del jugador no puede estar vacío.");
+    }
+}
+
+// Ordena los puntajes en orden descendente
+function sortScores(scores) {
+    return scores.sort((a, b) => b.points - a.points);
+}
+
+// Guarda el puntaje en localStorage
+function saveScoreToLocalStorage(newScore) {
+    let scores = JSON.parse(localStorage.getItem('scoreboard')) || [];
+    scores.push(newScore);
+    localStorage.setItem('scoreboard', JSON.stringify(scores));
+}
+
+// Actualiza la tabla de puntuaciones en la UI
+function updateScoreboardUI(score) {
+    const tableBody = document.querySelector(".scoreboard-table tbody");
+    const newRow = tableBody.insertRow();
+
+        const playerCell = newRow.insertCell(0);
+        const scoreCell = newRow.insertCell(1);
+
+        playerCell.textContent = score.name;
+        scoreCell.textContent = score.points  + " PT" ;
+}
+
+// Carga las puntuaciones desde localStorage al iniciar la página
+function loadScoresFromLocalStorage() {
+    scores = JSON.parse(localStorage.getItem('scoreboard')) || [];
+    const tableBody = document.querySelector(".scoreboard-table tbody");
+    tableBody.innerHTML = ""; // Limpiar la tabla existente
+    scores = sortScores(scores);
+    scores.forEach(score => updateScoreboardUI(score));
+}
+
+// Llama a la función para cargar las puntuaciones cuando se carga la página
+window.onload = loadScoresFromLocalStorage;
+
+
+function mostrarRespuestaCorrecta(){
+    const urlParams = new URLSearchParams(window.location.search);
+    idRespuesta = "answ-"+ urlParams.get('id');
+    const contenedorJuego = document.querySelector('.game-content');
+    const plantilla = templatesCache[idRespuesta];
+    console.log(plantilla);
+    if (plantilla) {
+        const contenido = plantilla.content.cloneNode(true);
+        contenedorJuego.innerHTML = '';
+        contenedorJuego.appendChild(contenido);
+        
+    } else {
+        console.error(`El template con ID ${idRespuesta} no se encontró.`);
+    }
 }

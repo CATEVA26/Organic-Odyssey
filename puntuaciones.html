@@ -37,18 +37,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Daniel</td>
-                            <td>300 PT</td>
-                        </tr>
-                        <tr>
-                            <td>Stefano</td>
-                            <td>300 PT</td>
-                        </tr>
-                        <tr>
-                            <td>George</td>
-                            <td>300 PT</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -56,7 +44,7 @@
                 <img src="/img/quimica-char-flag.png" alt="Game character" class="character-image-score">
             </div>
             <div class="botones" style="margin-left: 35%;">
-                <button class="btn-Accion" onmouseover="playSound('hover-sound')" onclick="redirigir('index')">
+                <button class="btn-Accion" onmouseover="playSound('hover-sound')" onclick="window.location.href='index.html'">
                     Nuevo Juego
                   <span></span><span></span><span></span><span></span>
                 </button>
@@ -70,5 +58,28 @@
     <script src="/js/scripts.js" defer></script>
     <script src="/js/sound.js"></script>
     <script src="/js/volume-controls.js"></script>
+
+    <script>
+        window.onload = function () {
+            const newPlayer = getQueryParam('newPlayer');
+            if(newPlayer){
+                addPlayerScore();
+                removeQueryParams();
+            }
+        }
+
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function removeQueryParams() {
+            const url = new URL(window.location.href);
+            url.search = ''; // Elimina todos los parámetros de la URL
+            window.history.replaceState({}, document.title, url.href);
+        }
+    </script>
+    
+
 </body>
 </html>
