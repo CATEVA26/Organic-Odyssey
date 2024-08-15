@@ -322,5 +322,54 @@ function cargarPreguntaAleatoriaTipo2() {
 }
 
 
+// Agregar jugador a la tabla de puntuacion
+function addPlayerScore() {
+    const playerName = prompt("Ingrese el nombre del jugador:");
+    
+    if (playerName) {
+        const newScore = { name: playerName, points: contadorRespuestasCorrectas};
+        saveScoreToLocalStorage(newScore);
+        loadScoresFromLocalStorage();
+    } else {
+        alert("El nombre del jugador no puede estar vacío.");
+    }
+}
+
+// Ordena los puntajes en orden descendente
+function sortScores(scores) {
+    return scores.sort((a, b) => b.points - a.points);
+}
+
+// Guarda el puntaje en localStorage
+function saveScoreToLocalStorage(newScore) {
+    let scores = JSON.parse(localStorage.getItem('scoreboard')) || [];
+    scores.push(newScore);
+    localStorage.setItem('scoreboard', JSON.stringify(scores));
+}
+
+// Actualiza la tabla de puntuaciones en la UI
+function updateScoreboardUI(score) {
+    const tableBody = document.querySelector(".scoreboard-table tbody");
+    const newRow = tableBody.insertRow();
+
+        const playerCell = newRow.insertCell(0);
+        const scoreCell = newRow.insertCell(1);
+
+        playerCell.textContent = score.name;
+        scoreCell.textContent = score.points  + " PT" ;
+}
+
+// Carga las puntuaciones desde localStorage al iniciar la página
+function loadScoresFromLocalStorage() {
+    scores = JSON.parse(localStorage.getItem('scoreboard')) || [];
+    const tableBody = document.querySelector(".scoreboard-table tbody");
+    tableBody.innerHTML = ""; // Limpiar la tabla existente
+    scores = sortScores(scores);
+    scores.forEach(score => updateScoreboardUI(score));
+}
+
+// Llama a la función para cargar las puntuaciones cuando se carga la página
+window.onload = loadScoresFromLocalStorage;
+
 
 
