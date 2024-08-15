@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="pause-content">
             <h2>Pausa</h2>
             <button class="pause-btn resume-btn">Reanudar</button>
-            <button class="pause-btn levels-btn" onclick="window.location.href='niveles.html'">Niveles</button>
-            <button class="pause-btn exit-btn" onclick="window.location.href='index.html'">Salir</button>
+            <button class="pause-btn levels-btn" onclick="resetScore(); setTimeout(function() { window.location.href = 'niveles.html'; }, 0);">Niveles</button>
+            <button class="pause-btn exit-btn" onclick="resetScore(); window.location.href='index.html';">Salir</button>
         </div>
     `;
     document.body.appendChild(pauseMenu);
@@ -38,6 +38,17 @@ document.addEventListener("DOMContentLoaded", function() {
         const secs = seconds % 60;
         return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
     }
+
+    function resetScore() {
+        // Inicializar puntos y numeroPreguntas como enteros
+        let puntos = 0;
+        let numeroPreguntas = 0;
+    
+        // Guardar los valores en localStorage
+        localStorage.setItem('puntos', puntos.toString());
+        localStorage.setItem('numeroPreguntas', numeroPreguntas.toString());
+    }
+    
 
     function startTimer() {
         timerInterval = setInterval(function() {
@@ -83,7 +94,7 @@ async function redirigir(pagina) {
         let numeroPreguntas = parseInt(localStorage.getItem('numeroPreguntas'), 10);
         
         // Si no existe, inicializar en 0
-        if (isNaN(numeroPreguntas)) {
+        if (isNaN(numeroPreguntas) || numeroPreguntas >= 2) {
             numeroPreguntas = 0;
         }
         
@@ -96,20 +107,44 @@ async function redirigir(pagina) {
         if (numeroPreguntas % 2 === 0) {
             pagina = pagina.replace("Tipo1", "Tipo2");
         } else if (pagina.includes("Tipo2")){
-            pagina = "puntuaciones?newPlayer=true";
+            pagina = "puntuaciones";
         }
     }
 
     if(respuesta){
-        window.location.href = pagina + '.html';
+        if(pagina.includes('puntuaciones')){
+            window.location.href = pagina + '.html?newPlayer=true';
+        }else{
+            window.location.href = pagina + '.html';
+        }
     }else{
         window.location.href = 'respuestaCorrecta.html?id=' + idPreguntaActual + '&pagina=' + pagina;
         // AQUI COLOCAR EL METODO PARA QUITAR VIDAS
     }
 }
 
+function obtenerContadorPuntos() {
+    // Recuperar el valor del localStorage
+    let puntos = localStorage.getItem('puntos');
+    
+    // Convertir el valor a número entero
+    let contadorRespuestasCorrectas = parseInt(puntos, 10);
+    
+    // Verificar si el valor es NaN (no es un número válido)
+    if (isNaN(contadorRespuestasCorrectas)) {
+        // Inicializar el contador en 0 y guardar en localStorage
+        contadorRespuestasCorrectas = 0;
+        localStorage.setItem('puntos', contadorRespuestasCorrectas);
+    }
+    
+    // Retornar el valor del contador
+    return contadorRespuestasCorrectas;
+}
+
+// Usar la función para guardar el valor en una variable
+let contadorRespuestasCorrectas = obtenerContadorPuntos();
+
 let idPreguntaActual = ""//viene en forma 'pregunta1-Tipo2'
-let contadorRespuestasCorrectas = 0
 let posibleRespuesta1
 let posibleRespuesta2
 let respuestasCorrectas
@@ -153,14 +188,18 @@ function compararRespuestasTipo2(numPregunta, preguntaEncontrada) {
     });
 
     if (todasCorrectas) {
-        contadorRespuestasCorrectas += 100;
-        alert("La respuesta es correcta");
-        return true
+        contadorRespuestasCorrectas = contadorRespuestasCorrectas + 100; 
+        alert(contadorRespuestasCorrectas)
+        localStorage.setItem('puntos', contadorRespuestasCorrectas.toString()); 
+        alert("La respuesta es correcta.");
+        return true;
     } else {
-        alert("La respuesta es incorrecta");
-        return false
+        alert(contadorRespuestasCorrectas)
+        alert("La respuesta es incorrecta.");
+        return false;
     }
 }
+
 
 function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
     switch (numPregunta) {
@@ -172,7 +211,8 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
             respuestasCorrectas = preguntaEncontrada.respuestas;
 
             if (posibleRespuesta1 == respuestasCorrectas[0] && posibleRespuesta2 == respuestasCorrectas[1]) {
-                contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100;
+                contadorRespuestasCorrectas = contadorRespuestasCorrectas + 100; 
+                localStorage.setItem('puntos', contadorRespuestasCorrectas.toString()); 
                 alert("La respuesta Es correcta");
                 return true
             } else {
@@ -189,7 +229,7 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
             respuestasCorrectas = preguntaEncontrada.respuestas;
 
             if (posibleRespuesta1 == respuestasCorrectas[0] && posibleRespuesta2 == respuestasCorrectas[1]) {
-                contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100;
+                contadorRespuestasCorrectas = contadorRespuestasCorrectas + 100; 
                 alert("La respuesta Es correcta");
                 return true
             } else {
@@ -204,7 +244,7 @@ function compararRespuestasTipo1(numPregunta, preguntaEncontrada) {
             respuestasCorrectas = preguntaEncontrada.respuestas;
 
             if (posibleRespuesta1 == respuestasCorrectas[0]) {
-                contadorRespuestasCorrectas += contadorRespuestasCorrectas + 100;
+                contadorRespuestasCorrectas = contadorRespuestasCorrectas + 100; 
                 alert("La respuesta Es correcta");
                 return true
             } else {
@@ -424,11 +464,13 @@ function addPlayerScore() {
     const playerName = prompt("Ingrese el nombre del jugador:");
 
     if (playerName) {
-        const newScore = { name: playerName, points: contadorRespuestasCorrectas};
+        const newScore = { name: playerName, points: localStorage.getItem('puntos')};
+        localStorage.setItem('puntos', 0);
         saveScoreToLocalStorage(newScore);
         loadScoresFromLocalStorage();
     } else {
         alert("El nombre del jugador no puede estar vacío.");
+        loadScoresFromLocalStorage();
     }
 }
 

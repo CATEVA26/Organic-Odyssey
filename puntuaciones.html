@@ -44,7 +44,7 @@
                 <img src="/img/quimica-char-flag.png" alt="Game character" class="character-image-score">
             </div>
             <div class="botones" style="margin-left: 35%;">
-                <button class="btn-Accion" onmouseover="playSound('hover-sound')" onclick="window.location.href='index.html'">
+                <button class="btn-Accion" onmouseover="playSound('hover-sound')" onclick="resetScore(); window.location.href='index.html';">
                     Nuevo Juego
                   <span></span><span></span><span></span><span></span>
                 </button>
@@ -55,16 +55,18 @@
             <audio id="hover-sound" src="sound/click.mp3"></audio>
         </div>
     </div>
-    <script src="/js/scripts.js" defer></script>
+    <script src="/js/scripts.js"></script>
     <script src="/js/sound.js"></script>
     <script src="/js/volume-controls.js"></script>
 
     <script>
         window.onload = function () {
             const newPlayer = getQueryParam('newPlayer');
-            if(newPlayer){
+            if(newPlayer === 'true'){
                 addPlayerScore();
                 removeQueryParams();
+            }else{
+                loadScoresFromLocalStorage();
             }
         }
 
@@ -77,6 +79,16 @@
             const url = new URL(window.location.href);
             url.search = ''; // Elimina todos los parámetros de la URL
             window.history.replaceState({}, document.title, url.href);
+        }
+
+        function resetScore() {
+            // Inicializar puntos y numeroPreguntas como enteros
+            let puntos = 0;
+            let numeroPreguntas = 0;
+        
+            // Guardar los valores en localStorage
+            localStorage.setItem('puntos', puntos.toString());
+            localStorage.setItem('numeroPreguntas', numeroPreguntas.toString());
         }
     </script>
     

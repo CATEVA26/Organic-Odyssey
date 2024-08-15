@@ -64,7 +64,11 @@
             
             if (pagina) {
                 button.onclick = function() {
-                    window.location.href = pagina + '.html';
+                    if(pagina.includes('puntuaciones')){
+                        window.location.href = pagina + '.html?newPlayer=true';
+                    }else{
+                        window.location.href = pagina + '.html';
+                    }
                 };
             }
         }
@@ -73,6 +77,16 @@
         function getQueryParam(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
+        }
+
+        function resetScore() {
+            // Inicializar puntos y numeroPreguntas como enteros
+            let puntos = 0;
+            let numeroPreguntas = 0;
+        
+            // Guardar los valores en localStorage
+            localStorage.setItem('puntos', puntos.toString());
+            localStorage.setItem('numeroPreguntas', numeroPreguntas.toString());
         }
     </script>
 </body>
