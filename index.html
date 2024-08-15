@@ -71,7 +71,7 @@
             <div>
                 <button alt="boton de ayuda" onmouseover="playSound('hover-sound')"
                     style="padding-left: 20px; align-items: end;" class="hoveer button-help"
-                    onclick="redirigir('ayudaJuego')">
+                    onclick="window.location.href='ayudaJuego.html'">
                     <i class="fa-regular fa-circle-question"></i>
                 </button>
 
@@ -84,6 +84,11 @@
     <script src="/js/volume-controls.js"></script>
     <script>
         playSound('background-sound');
+
+        window.onload = function() {
+            const storedVidas = sessionStorage.setItem('vidas', 3);
+            updateProgressBar();
+        }
     </script>
 
 </body>

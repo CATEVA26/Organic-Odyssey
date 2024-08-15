@@ -51,7 +51,7 @@
                 </div>
             </section>
             <div>
-                <button onmouseover="playSound('hover-sound')" style="padding-left: 20px; align-items: end;" class="hoveer button-help" onclick="redirigir('ayudaJuego')" >
+                <button onmouseover="playSound('hover-sound')" style="padding-left: 20px; align-items: end;" class="hoveer button-help" onclick="window.location.href='ayudaJuego.html'" >
                     <i class="fa-regular fa-circle-question"></i>
                 </button>
                 
@@ -61,5 +61,11 @@
     <script src="/js/scripts.js"></script>
     <script src="/js/sound.js"></script>
     <script src="/js/volume-controls.js"></script>
+    <script>
+        window.onload = function() {
+            const storedVidas = sessionStorage.setItem('vidas', 3);
+            updateProgressBar();
+        }
+    </script>
 </body>
 </html>

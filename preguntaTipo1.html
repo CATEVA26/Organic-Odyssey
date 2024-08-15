@@ -57,7 +57,7 @@
             <div class="bottom-buttons">
                 <button alt="boton de ayuda" onmouseover="playSound('hover-sound')"
                     style="padding-left: 20px; align-items: end; margin-bottom: 25px !important;"
-                    class="hoveer button-help" onclick="redirigir('ayudaJuego')">
+                    class="hoveer button-help" onclick="window.location.href='ayudaJuego.html'">
                     <i class="fa-regular fa-circle-question"></i>
                 </button>
                 <div class="botones" style="margin-right: 20px;">
@@ -80,6 +80,13 @@
             await cargarTemplates()
             cargarPreguntaAleatoriaTipo1();
             updateProgressBar();
+            const storedVidas = sessionStorage.getItem('vidas');
+            if (storedVidas !== null) {
+                vidas = parseInt(storedVidas, 10);
+            } else {
+                vidas = 3; // Valor inicial de vidas
+            }
+            actualizarVidas();
         }
 
         function resetScore() {
