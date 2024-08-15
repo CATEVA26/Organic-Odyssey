@@ -28,7 +28,7 @@
                 <img src="/img/827842-1.png" alt="Logo juego Organic Odyssey" style="width: 61px; height: 57px;">
                 <span>Organic Odyssey</span>
             </header>
-            
+
             <div class="volume-controls" onmouseover="playSound('hover-sound')">
                 <audio id="background-sound" src="sound/fondo.mp3" autoplay loop></audio>
                 <button class="volume-button" onclick="changeVolume(-0.3)" alt="bajar volumen">
@@ -38,7 +38,7 @@
                     <i class="fas fa-volume-up"></i>
                 </button onmouseover="playSound('hover-sound')">
                 <button class="volume-button" onclick="changeVolume(0.0)" alt="quitar volumen">
-                    <i class="fa-solid fa-volume-xmark"></i>                
+                    <i class="fa-solid fa-volume-xmark"></i>
                 </button>
                 <br><br>
             </div>
@@ -46,35 +46,37 @@
             <section class="contenido">
                 <div class="opciones animacion-imagen">
                     <img src="/img/quimica-3-1.png" alt="mascota del juego" style="width: 315px; height: 273px;">
-                </div>                  
+                </div>
                 <div class="botones" style="margin-bottom: 15px;">
-                    <button class="btn-Accion" onmouseover="playSound('hover-sound')" onclick="window.location.href='niveles.html'">
-                      Nuevo Juego
-                      <span></span><span></span><span></span><span></span>
+                    <button class="btn-Accion" onmouseover="playSound('hover-sound')" onclick="redirigir('niveles')">
+                        Nuevo Juego
+                        <span></span><span></span><span></span><span></span>
                     </button>
                 </div>
 
                 <div class="botones">
-                    <button class="btn-Accion" onmouseover="playSound('hover-sound')">
-                        Revisar conceptos
-                      <span></span><span></span><span></span><span></span>
+                    <button class="btn-Accion" style="margin-bottom: 15px;" onmouseover="playSound('hover-sound')" onclick="window.location.href='https://youtube.com/playlist?list=PLjNwdFTuvuiYVu9Ih5ys-GF-Zvag2wBD3&si=hjZFFmp-e-oV14-d'">
+                        Revisar Conceptos
+                        <span></span><span></span><span></span><span></span>
                     </button>
                 </div>
 
-            
+
                 <!-- Audio element -->
                 <audio id="hover-sound" src="sound/click.mp3"></audio>
                 <audio id="fondo-sound" src="sound/fondo.mp3"></audio>
- 
+
             </section>
-              
+
             <div>
-                <button alt="boton de ayuda" onmouseover="playSound('hover-sound')" style="padding-left: 20px; align-items: end;" class="hoveer button-help" onclick="redirigir('ayudaJuego')" >
+                <button alt="boton de ayuda" onmouseover="playSound('hover-sound')"
+                    style="padding-left: 20px; align-items: end;" class="hoveer button-help"
+                    onclick="redirigir('ayudaJuego')">
                     <i class="fa-regular fa-circle-question"></i>
                 </button>
-                
+
             </div>
-            
+
         </div>
     </div>
     <script src="/js/scripts.js"></script>
@@ -82,8 +84,8 @@
     <script src="/js/volume-controls.js"></script>
     <script>
         playSound('background-sound');
-        resetProgress()
     </script>
 
 </body>
+
 </html>
